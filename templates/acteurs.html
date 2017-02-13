@@ -14,10 +14,15 @@
     <td>Prénom </td>
   </tr>
   {% for acteur in acteurs %}
+  <a href="index.php?action=film_by_actor&id="{{acteur.code_indiv}}>
   <tr>
     <td>{{acteur.nom}}</td>
     <td>{{acteur.prenom}}</td>
+    <td>{{acteur.nationalite}}</td>
+    <td>{{acteur.date_naiss}}</td>
+    <td>{{acteur.date_mort}}</td>
   </tr>
+  </a>
   {% endfor %}
 </table>
 
