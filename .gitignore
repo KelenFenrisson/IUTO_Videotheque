@@ -4,3 +4,4 @@ Supprimerait .idea/dataSources.local.xml
 Supprimerait .idea/dataSources/
 Supprimerait .idea/modules.xml
 Supprimerait .idea/workspace.xml
+models/connect.php
