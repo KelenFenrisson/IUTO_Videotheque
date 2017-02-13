@@ -29,12 +29,12 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `films`;
 CREATE TABLE IF NOT EXISTS `films` (
   `code_film` int(11) NOT NULL,
-  `titre_original` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
-  `titre_francais` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
-  `pays` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `titre_original` varchar(50) DEFAULT NULL,
+  `titre_francais` varchar(50) DEFAULT NULL,
+  `pays` varchar(20) DEFAULT NULL,
   `date` int(11) DEFAULT NULL,
   `duree` int(11) DEFAULT NULL,
-  `couleur` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `couleur` varchar(10) DEFAULT NULL,
   `realisateur` int(11) DEFAULT NULL,
   `image` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=569 DEFAULT CHARSET=utf8;

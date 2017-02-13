@@ -6,7 +6,7 @@
  * Time: 09:28
  */
 
-define($DBUSER='mathieu');
-define($DBSERVER='localhost');
-define($DBNAME='Videotheque');
-define($DBPWD='K37enF3nR;5s0N');
+define('USER','mathieu');
+define('SERVER','localhost');
+define('BASE','Videotheque');
+define('PASSWD','K37enF3nR;5s0N');

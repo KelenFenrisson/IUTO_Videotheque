@@ -19,17 +19,16 @@ class Recherche{
   static $connexion;
 
   function __construct(){
-    $this->connexion = connect_bd()
+    $this->connexion = connect_bd();
   }
 
   function get_all_films(){
     $resultat="erreur requete";
-    echo "teest";
-    $sql = "select * from films";
+    $sql = "select * from films;";
     $stmt = $this->connexion->prepare($sql);
     if($stmt->execute()){
-      $resultat=$stmt->fetch(PDO::FETCH_ASSOC);
-    }
+      $resultat=$stmt->fetchAll(PDO::FETCH_ASSOC);
+    } else{echo "prout";}
     return $resultat;
   }
 

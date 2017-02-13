@@ -1,10 +1,8 @@
 <?php
 
 include 'vendor/autoload.php';
-echo"perdu";
 //on inclus le modele
-include 'recherche.php';
-echo"perdu2";
+include 'models/recherche.php';
 try {
     //indiquer le dossier ou on trouve les templates
     $loader = new Twig_Loader_Filesystem('templates');
