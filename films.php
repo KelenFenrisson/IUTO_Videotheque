@@ -10,9 +10,10 @@ try {
     //initialiser l'environement Twig_loader_filesystem
     $twig = new Twig_Environment($loader);
 
-    //recupérer les données depuis la base
-    $cont = new Recherche();
-    $films = $cont->get_all_films();
+    // //recupérer les données depuis la base
+    // $cont = new Recherche();
+    //
+    // $films = $cont->films_par_acteurs();
 
     //charger le template
     $template = $twig->loadTemplate('films.html');
