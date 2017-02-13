@@ -1,12 +1,12 @@
 <?php
 
-include 'vendor/autoload.php';
+include '../vendor/autoload.php';
 
-include 'recherche.php';
+include '../models/recherche.php';
 
 try {
     //indiquer le dossier ou on trouve les templates
-    $loader = new Twig_Loader_Filesystem('templates');
+    $loader = new Twig_Loader_Filesystem('.');
     //initialiser l'environement Twig_loader_filesystem
     $twig = new Twig_Environment($loader);
 

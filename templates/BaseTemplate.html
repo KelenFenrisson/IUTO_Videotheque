@@ -3,12 +3,21 @@
   <head>
     {% block head %}
     <meta charset="utf-8">
-    <link rel="stylesheet" href="/css/master.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="../static/master.css" media="screen" title="no title" charset="utf-8">
     <title>{% block title %}{% endblock %}</title>
     {% endblock %}
   </head>
   <body>
-
+    <header>
+      <h1>Base de Donnée des Films des Internets </h1>
+        <nav>
+            <ul>
+                <li><a href="index.php?action=film_list">Liste des films</a></li>
+                <li><a href="index.php?action=actor_list">Liste des acteurs</a></li>
+                <li><a href="index.php?action=genre_list">Liste des genres</a></li>
+            </ul>
+        </nav>
+    </header>
     <section id="content">
       {% block content %}{% endblock %}
     </section>

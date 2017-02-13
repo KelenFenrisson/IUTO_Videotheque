@@ -1,6 +1,6 @@
 <?php
 
-include 'controleur.php';
+include 'controllers.php';
 // on lit une action en parametre
 // par defaut, 'list'
 $action = $_GET['action'] ?? 'index';
@@ -10,7 +10,6 @@ switch ($action) {
     // Par defaut on emmene sur l'index
     case "index":
         index_action();
-
         break;
 
     // On demande la liste de tous les films

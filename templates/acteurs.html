@@ -2,7 +2,7 @@
 {% block title %}Base de données des Acteurs {% endblock %}
 {% block head %}
 {{parent()}}
-<link rel="stylesheet" href="static/tabstyle.css"/>
+<link rel="stylesheet" href="../static/tabstyle.css"/>
 {% endblock %}
 
 {% block content %}
@@ -12,17 +12,20 @@
   <tr>
     <td>Nom </td>
     <td>Prénom </td>
+      <td>Nationalité</td>
+      <td>Date de naissance</td>
+      <td>Date de décès</td>
   </tr>
   {% for acteur in acteurs %}
-  <a href="index.php?action=film_by_actor&id="{{acteur.code_indiv}}>
+
   <tr>
-    <td>{{acteur.nom}}</td>
+    <td><a href="index.php?action=film_by_actor&id={{acteur.code_indiv}}"> {{acteur.nom}} </a></td>
     <td>{{acteur.prenom}}</td>
     <td>{{acteur.nationalite}}</td>
     <td>{{acteur.date_naiss}}</td>
     <td>{{acteur.date_mort}}</td>
   </tr>
-  </a>
+
   {% endfor %}
 </table>
 
