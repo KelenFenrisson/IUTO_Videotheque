@@ -29,21 +29,21 @@ switch ($action) {
 
     // On demande une recherche de film avec un acteur particulier
     case "film_by_actor":
-        film_by_actor_action($actor_id);
+        film_by_actor_action($_GET['id']);
         break;
 
     // On demande une recherche film appartenant a un genre particulier
     case "film_by_genre":
-        film_by_genre_action($genre_id);
+        film_by_genre_action($_GET['id']);
         break;
 
     // On demande des acteurs jouant un certain genre
     case "actor_by_genre":
-        actor_by_genre_action($genre_id);
+        actor_by_genre_action($_GET['id']);
         break;
 
     case "actor_by_film":
-        actor_by_film_action($film_id);
+        actor_by_film_action($_GET['id']);
         break;
 
     default:
