@@ -12,14 +12,14 @@ try {
 
     //recupérer les données depuis la base
     $cont = new Recherche();
-    $films = $cont->get_all_films();
+    $acteurs = $cont->get_all_acteurs();
 
     //charger le template
-    $template = $twig->loadTemplate('films.html');
-    $titre = "Liste des films ";
+    $template = $twig->loadTemplate('acteurs.html');
+    $titre = "Liste des Acteurs ";
     echo $template->render(array(
       'titre'=>$titre,
-      'films'=> $films,
+      'acteurs'=> $acteurs,
     ));
   }catch (Exception $e){
     die('ERROR: '.$e->getMessage());

@@ -1,5 +1,5 @@
 {% extends "BaseTemplate.html" %}
-{% block title %}Base de données des films {% endblock %}
+{% block title %}Base de données des Acteurs {% endblock %}
 {% block head %}
 {{parent()}}
 <link rel="stylesheet" href="static/tabstyle.css"/>
@@ -10,15 +10,13 @@
 <h2>{{titre}}</h2>
 <table>
   <tr>
-    <td>Titre Film </td>
-    <td> Date </td>
-    <td> Durée </td>
+    <td>Nom </td>
+    <td>Prénom </td>
   </tr>
-  {% for film in films %}
+  {% for acteur in acteurs %}
   <tr>
-    <td>{{film.titre_original}}</td>
-    <td>{{film.date}}</td>
-    <td>{{film.duree}}</td>
+    <td>{{acteur.nom}}</td>
+    <td>{{acteur.prenom}}</td>
   </tr>
   {% endfor %}
 </table>

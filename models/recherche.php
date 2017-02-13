@@ -23,27 +23,24 @@ class Recherche{
   }
 
   function get_all_films(){
-    $resultat="erreur requete";
-    $sql = "select * from films;";
+    $sql = "select * from films";
     $stmt = $this->connexion->prepare($sql);
-    if($stmt->execute()){
-      $resultat=$stmt->fetchAll(PDO::FETCH_ASSOC);
-    } else{echo "prout";}
-    return $resultat;
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 
   function get_all_acteurs(){
     $sql = "select * from individus";
     $stmt = $this->connexion->prepare($sql);
     $stmt->execute();
-    return $stmt->fetch(PDO::FETCH_OBJ);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 
   function get_all_genres(){
     $sql = "select * from genres";
     $stmt = $this->connexion->prepare($sql);
     $stmt->execute();
-    return $stmt->fetch(PDO::FETCH_OBJ);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 
 }
