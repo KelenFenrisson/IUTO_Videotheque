@@ -1,0 +1,24 @@
+{% extends "BaseTemplate.html" %}
+{% block title %}Base de données des Acteurs {% endblock %}
+{% block head %}
+{{parent()}}
+<link rel="stylesheet" href="static/tabstyle.css"/>
+{% endblock %}
+
+{% block content %}
+
+<h2>{{titre}}</h2>
+<table>
+  <tr>
+    <td>Nom </td>
+    <td>Prénom </td>
+  </tr>
+  {% for acteur in acteurs %}
+  <tr>
+    <td>{{acteur.nom}}</td>
+    <td>{{acteur.prenom}}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+{% endblock %}
