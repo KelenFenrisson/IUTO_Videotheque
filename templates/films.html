@@ -8,10 +8,19 @@
 {% block content %}
 
 <h2>{{titre}}</h2>
+<table>
+  <tr>
+    <td>Titre Film </td>
+    <td> Date </td>
+    <td> Durée </td>
+  </tr>
   {% for film in films %}
-    {{film.code_film}}<br/>
-    {{film.titre_original}}<br/>
+  <tr>
+    <td>{{film.titre_original}}</td>
+    <td>{{film.date}}</td>
+    <td>{{film.duree}}</td>
+  </tr>
   {% endfor %}
-
+</table>
 
 {% endblock %}

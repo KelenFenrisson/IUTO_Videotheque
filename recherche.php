@@ -19,32 +19,28 @@ class Recherche{
   static $connexion;
 
   function __construct(){
-    $this->connexion = connect_bd()
+    $this->connexion = connect_bd();
   }
 
   function get_all_films(){
-    $resultat="erreur requete";
-    echo "teest";
     $sql = "select * from films";
     $stmt = $this->connexion->prepare($sql);
-    if($stmt->execute()){
-      $resultat=$stmt->fetch(PDO::FETCH_ASSOC);
-    }
-    return $resultat;
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 
   function get_all_acteurs(){
     $sql = "select * from individus";
     $stmt = $this->connexion->prepare($sql);
     $stmt->execute();
-    return $stmt->fetch(PDO::FETCH_OBJ);
+    return $stmt->fetchAll(PDO::FETCH_OBJ);
   }
 
   function get_all_genres(){
     $sql = "select * from genres";
     $stmt = $this->connexion->prepare($sql);
     $stmt->execute();
-    return $stmt->fetch(PDO::FETCH_OBJ);
+    return $stmt->fetchAll(PDO::FETCH_OBJ);
   }
 
 }
