@@ -50,7 +50,7 @@ class Recherche{
 	function films_par_acteurs($acteur){
 		$sql = "SELECT code_film,titre_original,titre_francais,pays,date,duree,couleur,realisateur,image
 						FROM films NATURAL JOIN  acteurs NATURAL JOIN  individus
-						WHERE code_indiv = $acteurs ";
+						WHERE code_indiv = $acteur ";
 		$stmt = $this->connexion->prepare($sql);
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
