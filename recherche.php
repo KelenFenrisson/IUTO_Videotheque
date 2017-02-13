@@ -33,14 +33,14 @@ class Recherche{
     $sql = "select * from individus";
     $stmt = $this->connexion->prepare($sql);
     $stmt->execute();
-    return $stmt->fetchAll(PDO::FETCH_OBJ);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 
   function get_all_genres(){
     $sql = "select * from genres";
     $stmt = $this->connexion->prepare($sql);
     $stmt->execute();
-    return $stmt->fetchAll(PDO::FETCH_OBJ);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 
 }
