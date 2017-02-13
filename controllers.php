@@ -1,13 +1,6 @@
 <?php
 
 include 'models/recherche.php';
-/**
- * Created by PhpStorm.
- * User: mathieu
- * Date: 13/02/17
- * Time: 15:16
- */
-
 
 function index_action()
 {
@@ -29,7 +22,6 @@ function film_by_actor_action($actor_id)
     $films = $recherche->films_par_acteurs($actor_id);
     require('films.php');
 }
-
 
 function film_by_genre_action($genre_id)
 {

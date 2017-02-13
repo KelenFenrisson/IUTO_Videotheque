@@ -49,6 +49,7 @@ switch ($action) {
         break;
 
     case "actor_by_film":
+        echo 'Acteurs par films';
         actor_by_film_action($_GET['id']);
         break;
 

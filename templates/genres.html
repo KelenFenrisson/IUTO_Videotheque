@@ -12,12 +12,12 @@
 <table>
     <tr>
         <td>Genre </td>
-        <td><a href="index.php?action=add_genre_action">+</a></td>
+        <td><a href="index.php?action=add_genre">+</a></td>
     </tr>
     {% for genre in genres %}
     <tr>
-        <td><a href="index.php?action=film_by_genre_action&id={{ genre.code_genre }}">{{genre.nom_genre}}</td>
-        <td><a href="index.php?action=edit_genre_action&id={{ genre.code_genre }}">M</a><a href="index.php?action=delete_genre_action&id={{ genre.code_genre }}">X</a> </td>
+        <td><a href="index.php?action=film_by_genre&id={{ genre.code_genre }}">{{genre.nom_genre}}</a></td>
+        <td><a href="index.php?action=edit_genre&id={{ genre.code_genre }}">M</a><a href="index.php?action=delete_genre&id={{ genre.code_genre }}">X</a> </td>
     </tr>
     {% endfor %}
 </table>

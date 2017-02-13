@@ -15,7 +15,7 @@
       <td>Nationalité</td>
       <td>Date de naissance</td>
       <td>Date de décès</td>
-      <td><a href="index.php?action=add_actor_action">+</a></td>
+      <td><a href="index.php?action=add_actor">+</a></td>
   </tr>
   {% for acteur in acteurs %}
 
@@ -25,7 +25,7 @@
     <td>{{acteur.nationalite}}</td>
     <td>{{acteur.date_naiss}}</td>
     <td>{{acteur.date_mort}}</td>
-      <td><a href="index.php?action=edit_actor_action&id={{ actor.code_indiv }}">M</a><a href="index.php?action=delete_actor_action&id={{ actor.code_indiv }}">X</a> </td>
+      <td><a href="index.php?action=edit_actor&id={{ actor.code_indiv }}">M</a><a href="index.php?action=delete_actor&id={{ actor.code_indiv }}">X</a> </td>
   </tr>
 
   {% endfor %}
