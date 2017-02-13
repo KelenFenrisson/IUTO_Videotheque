@@ -13,12 +13,14 @@
     <td>Titre Film </td>
     <td> Date </td>
     <td> Durée </td>
+      <td><a href="index.php?action=add_film_action">+</a></td>
   </tr>
   {% for film in films %}
   <tr>
-    <td>{{film.titre_original}}</td>
+    <td><a href="index.php?action=actor_by_film_action&id={{ film.code_film }}">{{film.titre_original}}</a></td>
     <td>{{film.date}}</td>
     <td>{{film.duree}}</td>
+      <td><a href="index.php?action=edit_film_action&id={{ film.code_film }}">M</a><a href="index.php?action=delete_film_action&id={{ film.code_film }}">X</a> </td>
   </tr>
   {% endfor %}
 </table>
