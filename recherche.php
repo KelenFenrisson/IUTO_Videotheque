@@ -43,5 +43,60 @@ class Recherche{
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 
+	function films_par_acteurs($acteur){
+		$sql = "select code_film,titre_original,titre_francais,pays,date,duree,couleur,realisateur,image
+						from films natural join acteurs natural join individus
+						where code_indiv = $acteurs ";
+		$stmt = $this->connexion->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
+
+	function films_par_genre($genre){
+		$sql = "select code_film,titre_original,titre_francais,pays,date,duree,couleur,realisateur,image
+						from films natural join acteurs natural join individus
+						where code_indiv = $genre ";
+		$stmt = $this->connexion->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
+
+	function acteurs_par_film($film){
+		$sql = "select code_indiv,nom,prenom,nationalite,date_naiss,date_mort
+						from films natural join acteurs natural join individus
+						where code_indiv = $film ";
+		$stmt = $this->connexion->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
+
+	function acteurs_par_genre($genre){
+		$sql = "select code_indiv,nom,prenom,nationalite,date_naiss,date_mort
+						from films natural join acteurs natural join individus
+						where code_indiv = $genre ";
+		$stmt = $this->connexion->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
+
+	function genres_par_film($film){
+		$sql = "select nom_genre
+						from films natural join acteurs natural join individus
+						where code_indiv = $film ";
+		$stmt = $this->connexion->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
+
+	function genres_par_acteur($acteur){
+		$sql = "select nom_genre
+						from films natural join acteurs natural join individus
+						where code_indiv = $acteur";
+		$stmt = $this->connexion->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
+
+
 }
 ?>
