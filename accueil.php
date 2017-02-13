@@ -5,7 +5,6 @@ try {
     $loader = new Twig_Loader_Filesystem('templates');
     //initialiser l'environement Twig_loader_filesystem
     $twig = new Twig_Environment($loader);
-    echo 'echo3';
     //charger le template
     $template = $twig->loadTemplate('accueil.html');
     $titre = 'Accueil';

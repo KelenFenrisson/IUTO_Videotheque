@@ -1,4 +1,5 @@
 <?php
+
 include 'models/recherche.php';
 /**
  * Created by PhpStorm.
@@ -65,3 +66,4 @@ function actor_by_film_action($film_id)
     $actors = $recherche->acteurs_par_genre($film_id);
     require('acteurs.php');
 }
+?>

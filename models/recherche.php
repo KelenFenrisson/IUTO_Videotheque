@@ -24,7 +24,7 @@ class Recherche{
 
 // recherche tous les films
   function get_all_films(){
-    $sql = "SELECT * from films";
+    $sql = "SELECT * from films ORDER BY titre_original";
     $stmt = $this->connexion->prepare($sql);
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -60,7 +60,7 @@ class Recherche{
 	function films_par_genre($genre){
 		$sql = "SELECT code_film,titre_original,titre_francais,pays,date,duree,couleur,realisateur,image
 						FROM films NATURAL JOIN  acteurs NATURAL JOIN  individus
-						WHERE code_indiv = $genre ";
+						WHERE code_genre = $genre ";
 		$stmt = $this->connexion->prepare($sql);
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -70,7 +70,7 @@ class Recherche{
 	function acteurs_par_film($film){
 		$sql = "SELECT code_indiv,nom,prenom,nationalite,date_naiss,date_mort
 						FROM films NATURAL JOIN  acteurs NATURAL JOIN  individus
-						WHERE code_indiv = $film ";
+						WHERE code_film = $film ";
 		$stmt = $this->connexion->prepare($sql);
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -80,7 +80,7 @@ class Recherche{
 	function acteurs_par_genre($genre){
 		$sql = "SELECT code_indiv,nom,prenom,nationalite,date_naiss,date_mort
 						FROM films natural join acteurs natural join individus
-						WHERE code_indiv = $genre ";
+						WHERE code_genre = $genre ";
 		$stmt = $this->connexion->prepare($sql);
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -90,7 +90,7 @@ class Recherche{
 	function genres_par_film($film){
 		$sql = "SELECT nom_genre
 						FROM films NATURAL JOIN  acteurs NATURAL JOIN  individus
-						WHERE code_indiv = $film ";
+						WHERE code_film = $film ";
 		$stmt = $this->connexion->prepare($sql);
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -110,21 +110,21 @@ class Recherche{
 function ajout_film($film){
 	$sql = " INSERT INTO films(code_film,titre_original,titre_francais,pays,date,duree,couleur,realisateur,image) VALUES (?,?,?,?,?,?,?,?,?)";
 	$stmt = $this->connexion->prepare($sql);
-	return $stmt->execute(array($film['code_film'],$film['titre_original'],$film['titre_francais'],$film['pays'],$film['date'],$film['duree'],$film['couleur'],$film['realisateur'],$film['image'],))
+	return $stmt->execute(array($film['code_film'],$film['titre_original'],$film['titre_francais'],$film['pays'],$film['date'],$film['duree'],$film['couleur'],$film['realisateur'],$film['image']));
 }
 
 //ajout d'un acteur
 function ajout_acteur($acteur){
 	$sql = " INSERT INTO individus(code_indiv,nom,prenom,nationalite,date_naiss,date_mort) VALUES (?,?,?,?,?,?)";
 	$stmt = $this->connexion->prepare($sql);
-	return $stmt->execute(array($acteur['code_indiv'],$acteur['nom'],$acteur['prenom'],$acteur['nationalite'],$acteur['date_naiss'],$acteur['date_mort']))
+	return $stmt->execute(array($acteur['code_indiv'],$acteur['nom'],$acteur['prenom'],$acteur['nationalite'],$acteur['date_naiss'],$acteur['date_mort']));
 }
 
 //ajout d'un genre
 function ajout_genre($genre){
 	$sql = " INSERT INTO genres(code_genre,nom_genre) VALUES (?,?)";
 	$stmt = $this->connexion->prepare($sql);
-	return $stmt->execute(array($genre['code_genre'],$genre['nom_genre']))
+	return $stmt->execute(array($genre['code_genre'],$genre['nom_genre']));
 }
 
 //supression d'un film
@@ -138,14 +138,14 @@ function suppr_film($film){
 function suppr_acteur($acteur){
 	$sql="DELETE FROM individus WHERE ID=$acteur";
 	$stmt=$this->connexion->prepare($sql);
-	return $stmt-execute() ;
+	return $stmt-execute();
 }
 
 //supression d'un genre
 function suppr_genre($genre){
 	$sql="DELETE FROM genres WHERE ID=$genre";
 	$stmt=$this->connexion->prepare($sql);
-	return $stmt-execute() ;
+	return $stmt-execute();
 }
 
 //modification d'un film (avec $film toutes les valeurs)
@@ -159,7 +159,7 @@ return $stmt->execute(array($film['titre_original'],$film['titre_francais'],$fil
 function modif_acteur($acteur){
 $sql = "UPDATE individus SET nom=?,prenom=?,nationalite=?,date_naiss=?,date_mort=? where code_indiv=?";
 $stmt=$this->connexion->prepare($sql);
-return $stmt->execute(array($film['nom'],$film['prenom'],$film['nationalite'],$film['date_naiss'],$film['date_mort']))
+return $stmt->execute(array($acteur['nom'],$acteur['prenom'],$acteur['nationalite'],$acteur['date_naiss'],$acteur['date_mort']));
 }
 
 //modification d'un genre (avec $genre toutes les valeurs)

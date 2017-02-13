@@ -22,5 +22,13 @@
   </tr>
   {% endfor %}
 </table>
+{% endblock %}
 
+{% block javascript%}
+regtitre = new RegExp("^[A]{2,}$");
+
+{% for film in films%}
+var titrefilm = document.getElementById('{{film.titre_original}}');
+if (!regtitre.test(titrefilm))       {titrefilm.style.display = "none";}
+{% endfor %}
 {% endblock %}
