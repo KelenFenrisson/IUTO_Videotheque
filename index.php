@@ -12,32 +12,35 @@ switch ($action) {
         index_action();
         break;
 
-    // On demande la liste de tous les films
+    // GESTION DES FILMS
     case "film_list":
         film_list_action();
         break;
 
-    // On demande la liste de tous les acteurs
-    case "actor_list":
-        actor_list_action();
-        break;
-
-    // On demande la liste de tous les genres
-    case "genre_list":
-        genre_list_action();
-        break;
-
-    // On demande une recherche de film avec un acteur particulier
     case "film_by_actor":
         film_by_actor_action($_GET['id']);
         break;
 
-    // On demande une recherche film appartenant a un genre particulier
     case "film_by_genre":
         film_by_genre_action($_GET['id']);
         break;
 
-    // On demande des acteurs jouant un certain genre
+    case "add_film":
+        add_film_action($_GET);
+        
+    case "edit_film":
+        edit_film_action($_GET);
+        
+    case "delete_film":
+        delete_film_action($_GET['id']);
+        
+    
+        
+    // GESTION DES ACTEURS
+    case "actor_list":
+        actor_list_action();
+        break;
+
     case "actor_by_genre":
         actor_by_genre_action($_GET['id']);
         break;
@@ -46,6 +49,37 @@ switch ($action) {
         actor_by_film_action($_GET['id']);
         break;
 
+    case "add_actor":
+        add_actor_action($_GET);
+
+    case "edit_actor":
+        edit_actor_action($_GET);
+
+    case "delete_actor":
+        delete_actor_action($_GET['id']);
+
+    // GESTION DES GENRES
+    case "genre_list":
+        genre_list_action();
+        break;
+        
+    case "genre_by_film":
+        genre_list_action();
+        break;
+        
+    case "genre_by_actor":
+        genre_list_action();
+        break;
+
+    case "add_genre":
+        add_genre_action($_GET);
+
+    case "edit_genre":
+        edit_genre_action($_GET);
+
+    case "delete_genre":
+        delete_genre_action($_GET['id']);
+        
     default:
         index_action();
 }
