@@ -27,12 +27,15 @@ switch ($action) {
 
     case "add_film":
         add_film_action($_GET);
+        break;
         
     case "edit_film":
         edit_film_action($_GET);
+        break;
         
     case "delete_film":
         delete_film_action($_GET['id']);
+        break;
         
     
         
@@ -51,12 +54,15 @@ switch ($action) {
 
     case "add_actor":
         add_actor_action($_GET);
+        break;
 
     case "edit_actor":
         edit_actor_action($_GET);
+        break;
 
     case "delete_actor":
         delete_actor_action($_GET['id']);
+        break;
 
     // GESTION DES GENRES
     case "genre_list":
@@ -73,13 +79,16 @@ switch ($action) {
 
     case "add_genre":
         add_genre_action($_GET);
+        break;
 
     case "edit_genre":
         edit_genre_action($_GET);
+        break;
 
     case "delete_genre":
         delete_genre_action($_GET['id']);
-        
+        break;
+
     default:
         index_action();
 }
