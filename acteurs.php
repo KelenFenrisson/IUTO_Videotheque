@@ -9,10 +9,7 @@ try {
     //initialiser l'environement Twig_loader_filesystem
     $twig = new Twig_Environment($loader);
 
-    //recupérer les données depuis la base
-    $cont = new Recherche();
-    $acteurs = $cont->get_all_acteurs();
-
+    
     //charger le template
     $template = $twig->loadTemplate('acteurs.html');
     $titre = "Liste des Acteurs ";
