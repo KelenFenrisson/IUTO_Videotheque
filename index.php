@@ -5,6 +5,7 @@ include 'controllers.php';
 // par defaut, 'list'
 $action = $_GET['action'] ?? 'index';
 $message="";
+
 switch ($action) {
 
     // Par defaut on emmene sur l'index

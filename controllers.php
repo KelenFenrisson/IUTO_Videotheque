@@ -10,14 +10,14 @@ include 'models/recherche.php';
 
 function index_action()
 {
-    require('templates/accueil.php');
+    require('accueil.php');
 }
 
 function film_list_action()
 {
     $recherche = new Recherche();
     $films = $recherche->get_all_films();
-    require('templates/films.php');
+    require('films.php');
 }
 
 
@@ -25,14 +25,14 @@ function film_list_action()
 {
     $recherche = new Recherche();
     $acteurs = $recherche->get_all_acteurs();
-    require('templates/acteurs.php');
+    require('acteurs.php');
 }
 
 function genre_list_action()
 {
     $recherche = new Recherche();
     $genres = $recherche->get_all_genres();
-    require('templates/genres.php');
+    require('genres.php');
 }
 
 
@@ -40,30 +40,28 @@ function film_by_actor_action($actor_id)
 {
     $recherche = new Recherche();
     $films = $recherche->films_par_acteurs($actor_id);
-    require('templates/films.php');
+    require('films.php');
 }
 
 
-  function film_by_genre_action($genre_id)
+function film_by_genre_action($genre_id)
 {
     $recherche = new Recherche();
     $films = $recherche->films_par_genre($genre_id);
-    require('templates/films.php');
+    require('films.php');
 }
 
-
-
- function actor_by_genre_action($genre_id)
+function actor_by_genre_action($genre_id)
 
 {
     $recherche = new Recherche();
     $actors = $recherche->acteurs_par_genre($genre_id);
-    require('templates/acteurs.php');
+    require('acteurs.php');
 }
 
-  function actor_by_film_action($film_id)
+function actor_by_film_action($film_id)
 {
     $recherche = new Recherche();
     $actors = $recherche->acteurs_par_genre($film_id);
-    require('templates/acteurs.php');
+    require('acteurs.php');
 }

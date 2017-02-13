@@ -1,0 +1,16 @@
+{% extends "BaseTemplate.html" %}
+{% block title %}Base de données des Acteurs {% endblock %}
+{% block head %}
+{{parent()}}
+<link rel="stylesheet" href="../static/tabstyle.css"/>
+{% endblock %}
+
+{% block content %}
+
+<h2>{{titre}}</h2>
+  {% for genre in genres %}
+ <p><a href="index.php?action=film_by_genre&id={{genre.code_genre}}">{{genre.nom_genre}}</a></p>
+  {% endfor %}
+
+
+{% endblock %}
