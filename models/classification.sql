@@ -28,15 +28,17 @@ SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `classification`;
 CREATE TABLE IF NOT EXISTS `classification` (
-  `ref_code_film` int(11) DEFAULT NULL,
-  `ref_code_genre` int(11) DEFAULT NULL
+  `code_film` int(11) ,
+  `code_genre` int(11) ,
+  CONSTRAINT classification_fk1 FOREIGN KEY(code_film) REFERENCES films(code_film),
+  CONSTRAINT classification_fk2 FOREIGN KEY(code_genre) REFERENCES genres(code_genre)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Contenu de la table `classification`
 --
 
-INSERT INTO `classification` (`ref_code_film`, `ref_code_genre`) VALUES
+INSERT INTO `classification` (`code_film`, `code_genre`) VALUES
 (43, 4),
 (43, 14),
 (68, 10),
