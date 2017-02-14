@@ -3,7 +3,7 @@
 require("connect.php");
 
 function connect_bd(){
-	$dsn="mysql:dbname=".BASE.";host=".SERVER;
+	$dsn="mysql:dbname=".BASE.";host=".SERVER.";charset=utf8";
 		try{
 		$connexion=new PDO($dsn,USER,PASSWD);
 		}

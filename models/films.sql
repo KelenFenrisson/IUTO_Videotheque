@@ -1,25 +1,3 @@
--- phpMyAdmin SQL Dump
--- version 4.4.2
--- http://www.phpmyadmin.net
---
--- Client :  servinfo-db
--- Généré le :  Ven 17 Avril 2015 à 10:58
--- Version du serveur :  5.5.41-MariaDB-1ubuntu0.14.04.1
--- Version de PHP :  5.5.9-1ubuntu4.4
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-
---
--- Base de données :  `dbgerard`
---
-
 -- --------------------------------------------------------
 
 --
@@ -29,15 +7,17 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `films`;
 CREATE TABLE IF NOT EXISTS `films` (
   `code_film` int(11) NOT NULL,
-  `titre_original` varchar(50) DEFAULT NULL,
+  `titre_original` varchar(50) NOT NULL,
   `titre_francais` varchar(50) DEFAULT NULL,
   `pays` varchar(20) DEFAULT NULL,
-  `date` int(11) DEFAULT NULL,
+  `date` int(11) NOT NULL,
   `duree` int(11) DEFAULT NULL,
   `couleur` varchar(10) DEFAULT NULL,
-  `realisateur` int(11) DEFAULT NULL,
-  `image` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=569 DEFAULT CHARSET=utf8;
+  `realisateur` int(11) NOT NULL,
+  `image` varchar(20) DEFAULT NULL,
+  CONSTRAINT films_pk PRIMARY KEY (code_film, realisateur),
+  CONSTRAINT films_fk FOREIGN KEY (realisateur) REFERENCES individus(code_indiv)
+) ;
 
 --
 -- Contenu de la table `films`
@@ -602,25 +582,3 @@ INSERT INTO `films` (`code_film`, `titre_original`, `titre_francais`, `pays`, `d
 (565, 'You Only Live Once                                ', 'J''ai le droit de vivre                            ', 'USA                 ', 1937, 86, 'NB        ', 43, 'droit_vivre.jpeg    '),
 (568, 'Topaz                                             ', 'Etau (L'')                                         ', 'USA                 ', 1969, 127, 'couleur   ', 26, 'etau.jpeg           ');
 
---
--- Index pour les tables exportées
---
-
---
--- Index pour la table `films`
---
-ALTER TABLE `films`
-  ADD PRIMARY KEY (`code_film`);
-
---
--- AUTO_INCREMENT pour les tables exportées
---
-
---
--- AUTO_INCREMENT pour la table `films`
---
-ALTER TABLE `films`
-  MODIFY `code_film` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=569;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

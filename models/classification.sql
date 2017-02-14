@@ -1,25 +1,3 @@
--- phpMyAdmin SQL Dump
--- version 4.4.2
--- http://www.phpmyadmin.net
---
--- Client :  servinfo-db
--- Généré le :  Ven 17 Avril 2015 à 10:58
--- Version du serveur :  5.5.41-MariaDB-1ubuntu0.14.04.1
--- Version de PHP :  5.5.9-1ubuntu4.4
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-
---
--- Base de données :  `dbgerard`
---
-
 -- --------------------------------------------------------
 
 --
@@ -33,7 +11,7 @@ CREATE TABLE IF NOT EXISTS `classification` (
   CONSTRAINT classification_pk PRIMARY KEY (code_film, code_genre),
   CONSTRAINT classification_fk1 FOREIGN KEY(code_film) REFERENCES films(code_film),
   CONSTRAINT classification_fk2 FOREIGN KEY(code_genre) REFERENCES genres(code_genre)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+);
 
 --
 -- Contenu de la table `classification`
@@ -1796,6 +1774,8 @@ INSERT INTO `classification` (`code_film`, `code_genre`) VALUES
 (568, 3),
 (568, 17),
 (568, 8);
+
+#DOUBLONS POTENTIELS
 # (43, 4),
 # (43, 14),
 # (68, 10),
@@ -3558,7 +3538,3 @@ INSERT INTO `classification` (`code_film`, `code_genre`) VALUES
 # (568, 3),
 # (568, 17),
 # (568, 8);
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
