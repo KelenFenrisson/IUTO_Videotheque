@@ -30,9 +30,40 @@ class Recherche{
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 
+// recherche tous les films
+	function get_all_realisateurs(){
+		$sql = "SELECT DISTINCT code_indiv,nom,prenom,nationalite,date_naiss,date_mort 
+				FROM films NATURAL JOIN individus 
+				WHERE realisateur=code_indiv 
+				ORDER BY nom, prenom";
+		$stmt = $this->connexion->prepare($sql);
+		$stmt->execute();
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
+
+// recherche tous les films
+    function get_all_noiretblanc(){
+        $sql = "SELECT * from films 
+				WHERE couleur='NB' 
+				ORDER BY titre_original";
+        $stmt = $this->connexion->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+// recherche tous les films
+    function get_all_couleur(){
+        $sql = "SELECT * from films 
+				WHERE couleur='couleur' 
+				ORDER BY titre_original";
+        $stmt = $this->connexion->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 // recherche tous les acteurs
   function get_all_acteurs(){
-    $sql = "SELECT * from individus";
+    $sql = "SELECT * from individus ORDER BY nom, prenom";
     $stmt = $this->connexion->prepare($sql);
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -40,7 +71,7 @@ class Recherche{
 
 // recherche tous les genres
   function get_all_genres(){
-    $sql = "SELECT * from genres";
+    $sql = "SELECT * from genres ORDER BY nom_genre";
     $stmt = $this->connexion->prepare($sql);
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -131,23 +162,23 @@ function ajout_genre($genre){
 
 //supression d'un film
 function suppr_film($film){
-	$sql="DELETE FROM films WHERE ID=$film";
+	$sql="DELETE FROM films WHERE ID=?";
 	$stmt=$this->connexion->prepare($sql);
-	return $stmt-execute() ;
+	return $stmt->execute(array($film)) ;
 }
 
 //supression d'un acteur
 function suppr_acteur($acteur){
-	$sql="DELETE FROM individus WHERE ID=$acteur";
+	$sql="DELETE FROM individus WHERE ID=?";
 	$stmt=$this->connexion->prepare($sql);
-	return $stmt-execute();
+	return $stmt->execute(array($acteur));
 }
 
 //supression d'un genre
 function suppr_genre($genre){
-	$sql="DELETE FROM genres WHERE ID=$genre";
+	$sql="DELETE FROM genres WHERE ID=?";
 	$stmt=$this->connexion->prepare($sql);
-	return $stmt-execute();
+	return $stmt->execute(array($genre));
 }
 
 //modification d'un film (avec $film toutes les valeurs)

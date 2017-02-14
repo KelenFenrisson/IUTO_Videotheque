@@ -16,7 +16,7 @@ $filters = array(
     'code_indiv'   => FILTER_SANITIZE_NUMBER_INT,
     'code_genre'   =>  FILTER_SANITIZE_NUMBER_INT,
 
-    // champs texte : On veut des <string> qui ne soient que des lettres
+    // champs texte : On veut des <string> qui ne soient que des caracteres 'courants'
     'nom_genre' =>    FILTER_SANITIZE_STRING,
     'nom'    =>FILTER_SANITIZE_STRING,
     'prenom'    =>  FILTER_SANITIZE_STRING,
@@ -42,18 +42,18 @@ $filters = array(
 
 // DECOMMENTER CI DESSOUS POUR VOIR COMMENT LE FILTRE AGIT
 
-//echo '$_GET';
-//foreach ($_GET as $entry=>$getval)
-//{
-//    echo "<p> Entrée : $entry = $getval</p>";
-//
-//}
-//echo '$_GET FILTRAGE';
-//foreach ($filtered as $entry=>$filval)
-//{
-//    echo "<p> Entrée : $entry = $filval</p>";
-//
-//}
+echo '$_GET';
+foreach ($_GET as $entry=>$getval)
+{
+    echo "<p> Entrée : $entry = $getval</p>";
+
+}
+echo '$_GET FILTRAGE';
+foreach ($filtered as $entry=>$filval)
+{
+    echo "<p> Entrée : $entry = $filval</p>";
+
+}
 
 
 
@@ -137,6 +137,18 @@ switch ($action) {
 
     case "delete_genre":
         delete_genre_action($filtered['id']);
+        break;
+
+    case "director_list":
+        director_list_action();
+        break;
+
+    case "bnw_list":
+        bnw_list_action();
+        break;
+
+    case "color_list":
+        color_list_action();
         break;
 
     default:
