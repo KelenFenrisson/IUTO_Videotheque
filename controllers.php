@@ -2,6 +2,11 @@
 
 include 'models/recherche.php';
 
+function pagenotfound_action()
+{
+    require('error404.php');
+}
+
 function index_action()
 {
     require('accueil.php');
