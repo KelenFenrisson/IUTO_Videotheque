@@ -1,7 +1,16 @@
-connect.php
 Supprimerait .idea/IUTO_Videotheque.iml
 Supprimerait .idea/dataSources.local.xml
 Supprimerait .idea/dataSources/
+Supprimerait .idea/encodings.xml
 Supprimerait .idea/modules.xml
 Supprimerait .idea/workspace.xml
+.idea/IUTO_Videotheque.iml
+.idea/dataSources.local.xml
+.idea/dataSources/
+.idea/modules.xml
+.idea/workspace.xml
+.idea/encodings.xml
+
 models/connect.php
+connect.php
+

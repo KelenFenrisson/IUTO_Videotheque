@@ -59,8 +59,8 @@ class Recherche{
 //recherche tous les films d'un même genres
 	function films_par_genre($genre){
 		$sql = "SELECT code_film,titre_original,titre_francais,pays,date,duree,couleur,realisateur,image
-						FROM films NATURAL JOIN  acteurs NATURAL JOIN  individus
-						WHERE code_genre = $genre ";
+		FROM films NATURAL JOIN  classification NATURAL JOIN  genres
+		WHERE code_genre=$genre";
 		$stmt = $this->connexion->prepare($sql);
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -79,7 +79,8 @@ class Recherche{
 // recherche les acteurs d'un genre
 	function acteurs_par_genre($genre){
 		$sql = "SELECT code_indiv,nom,prenom,nationalite,date_naiss,date_mort
-						FROM films natural join acteurs natural join individus
+						FROM films natural join acteurs natural join individus 
+						NATURAL JOIN classification NATURAL JOIN  genres
 						WHERE code_genre = $genre ";
 		$stmt = $this->connexion->prepare($sql);
     $stmt->execute();
@@ -89,8 +90,8 @@ class Recherche{
 //recherche tous les genres d'un film
 	function genres_par_film($film){
 		$sql = "SELECT nom_genre
-						FROM films NATURAL JOIN  acteurs NATURAL JOIN  individus
-						WHERE code_film = $film ";
+		FROM films NATURAL JOIN  classification NATURAL JOIN  genres
+		WHERE code_film = $film ";
 		$stmt = $this->connexion->prepare($sql);
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -99,8 +100,9 @@ class Recherche{
 //recherche tous les genres d'un acteur
 	function genres_par_acteur($acteur){
 		$sql = "SELECT nom_genre
-						FROM films NATURAL JOIN  acteurs NATURAL JOIN  individus
-						WHERE code_indiv = $acteur";
+		FROM films NATURAL JOIN  acteurs NATURAL JOIN  individus 
+		NATURAL JOIN classification NATURAL JOIN  genres
+		WHERE code_indiv = $acteur";
 		$stmt = $this->connexion->prepare($sql);
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
