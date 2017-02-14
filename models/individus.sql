@@ -1,25 +1,3 @@
--- phpMyAdmin SQL Dump
--- version 4.4.2
--- http://www.phpmyadmin.net
---
--- Client :  servinfo-db
--- Généré le :  Ven 17 Avril 2015 à 10:58
--- Version du serveur :  5.5.41-MariaDB-1ubuntu0.14.04.1
--- Version de PHP :  5.5.9-1ubuntu4.4
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-
---
--- Base de données :  `dbgerard`
---
-
 -- --------------------------------------------------------
 
 --
@@ -28,13 +6,14 @@ SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `individus`;
 CREATE TABLE IF NOT EXISTS `individus` (
-  `code_indiv` int(11) NOT NULL,
-  `nom` varchar(20) DEFAULT NULL,
-  `prenom` varchar(20) DEFAULT NULL,
-  `nationalite` varchar(20) DEFAULT NULL,
+  `code_indiv` int(11) NOT NULL AUTO_INCREMENT,
+  `nom` varchar(20) NOT NULL ,
+  `prenom` varchar(20) NOT NULL ,
+  `nationalite` varchar(20) DEFAULT NULL ,
   `date_naiss` int(11) DEFAULT NULL,
-  `date_mort` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=892 DEFAULT CHARSET=utf8;
+  `date_mort` int(11) DEFAULT NULL,
+  CONSTRAINT individus_pk PRIMARY KEY(code_indiv)
+);
 
 --
 -- Contenu de la table `individus`
@@ -916,25 +895,4 @@ INSERT INTO `individus` (`code_indiv`, `nom`, `prenom`, `nationalite`, `date_nai
 (891, 'Noiret              ', 'Philippe            ', 'française           ', 1930, 2006),
 (660, 'Newman              ', 'Paul                ', 'américaine          ', 1925, 2008);
 
---
--- Index pour les tables exportées
---
 
---
--- Index pour la table `individus`
---
-ALTER TABLE `individus`
-  ADD PRIMARY KEY (`code_indiv`);
-
---
--- AUTO_INCREMENT pour les tables exportées
---
-
---
--- AUTO_INCREMENT pour la table `individus`
---
-ALTER TABLE `individus`
-  MODIFY `code_indiv` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=892;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

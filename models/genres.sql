@@ -1,36 +1,10 @@
--- phpMyAdmin SQL Dump
--- version 4.4.2
--- http://www.phpmyadmin.net
---
--- Client :  servinfo-db
--- Généré le :  Ven 17 Avril 2015 à 10:58
--- Version du serveur :  5.5.41-MariaDB-1ubuntu0.14.04.1
--- Version de PHP :  5.5.9-1ubuntu4.4
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-
---
--- Base de données :  `dbgerard`
---
-
--- --------------------------------------------------------
-
---
--- Structure de la table `genres`
---
 
 DROP TABLE IF EXISTS `genres`;
 CREATE TABLE IF NOT EXISTS `genres` (
-  `code_genre` int(11) NOT NULL,
-  `nom_genre` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
+  `code_genre` int(11) AUTO_INCREMENT,
+  `nom_genre` varchar(50) NOT NULL,
+  CONSTRAINT genre_pk PRIMARY KEY(code_genre)
+);
 
 --
 -- Contenu de la table `genres`
@@ -66,26 +40,3 @@ INSERT INTO `genres` (`code_genre`, `nom_genre`) VALUES
 (2, 'carrément à l''ouest                               '),
 (29, 'vers le soleil levant                             '),
 (24, 'perle de nanard                                   ');
-
---
--- Index pour les tables exportées
---
-
---
--- Index pour la table `genres`
---
-ALTER TABLE `genres`
-  ADD PRIMARY KEY (`code_genre`);
-
---
--- AUTO_INCREMENT pour les tables exportées
---
-
---
--- AUTO_INCREMENT pour la table `genres`
---
-ALTER TABLE `genres`
-  MODIFY `code_genre` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=31;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

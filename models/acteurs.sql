@@ -1,25 +1,3 @@
--- phpMyAdmin SQL Dump
--- version 4.4.2
--- http://www.phpmyadmin.net
---
--- Client :  servinfo-db
--- Généré le :  Ven 17 Avril 2015 à 10:57
--- Version du serveur :  5.5.41-MariaDB-1ubuntu0.14.04.1
--- Version de PHP :  5.5.9-1ubuntu4.4
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-
---
--- Base de données :  `dbgerard`
---
-
 -- --------------------------------------------------------
 
 --
@@ -33,7 +11,7 @@ CREATE TABLE IF NOT EXISTS `acteurs` (
   CONSTRAINT acteurs_pk PRIMARY KEY(code_film, code_indiv),
   CONSTRAINT acteurs_fk1 FOREIGN KEY(code_film) REFERENCES films(code_film),
   CONSTRAINT acteurs_fk2 FOREIGN KEY(code_indiv) REFERENCES individus(code_indiv)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+);
 
 --
 -- Contenu de la table `acteurs`
@@ -1452,7 +1430,9 @@ INSERT INTO `acteurs` (`code_film`, `code_indiv`) VALUES
 (568, 530),
 (568, 41),
 (568, 891),
-(518, 413)
+(518, 413);
+
+#DOUBLONS POTENTIELS
 # (1, 31),
 # (2, 32),
 # (2, 33),
@@ -2868,8 +2848,4 @@ INSERT INTO `acteurs` (`code_film`, `code_indiv`) VALUES
 # (568, 41),
 # (568, 891),
 #(518, 413)
-;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
