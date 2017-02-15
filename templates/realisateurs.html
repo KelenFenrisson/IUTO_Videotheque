@@ -1,0 +1,39 @@
+{% extends "BaseTemplate.html" %}
+{% block title %}Base de données des realisateurs {% endblock %}
+{% block head %}
+{{parent()}}
+{% endblock %}
+
+{% block content %}
+
+<h2>{{titre}}</h2>
+<table>
+  <tr>
+    <td>Nom </td>
+    <td>Prénom </td>
+    <td>Nationalité</td>
+    <td>Date de naissance</td>
+    <td>Date de décès</td>
+    <td><a href="index.php?action=add_director">+</a></td>
+  </tr>
+  {% for realisateur in realisateurs %}
+
+  <tr>
+    <td><a href="index.php?action=film_by_director&id={{realisateur.code_indiv}}"> {{realisateur.nom}} </a></td>
+    <td>{{realisateur.prenom}}</td>
+    <td>{{realisateur.nationalite}}</td>
+    <td>{{realisateur.date_naiss}}</td>
+    <td>{{realisateur.date_mort}}</td>
+      <td><a href="index.php?action=edit_director&id={{ realisateur.code_indiv }}">M</a><a href="index.php?action=delete_director&id={{ realisateur.code_indiv }}">X</a> </td>
+  </tr>
+
+  {% endfor %}
+
+
+</table>
+<div id="message">
+  {% if est_ajoute %} <p> Supprimé avec succès </p> {% endif %}
+  {% if est_modifie %} <p> Modifié avec succès </p> {% endif %}
+  {% if est_efface %} <p> Effacé avec succès </p> {% endif %}
+</div>
+{% endblock %}

@@ -143,6 +143,24 @@ switch ($action) {
         director_list_action();
         break;
 
+    case "film_by_director":
+        film_by_director_action();
+        break;
+
+    case "add_film":
+        add_director_action();
+        break;
+
+
+    case "edit_film":
+        edit_director_action();
+        break;
+
+
+    case "delete_film":
+        delete_director_action();
+        break;
+
     case "bnw_list":
         bnw_list_action();
         break;

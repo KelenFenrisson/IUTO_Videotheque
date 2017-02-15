@@ -30,18 +30,17 @@ class Recherche{
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 
-// recherche tous les films
+// recherche tous les realisateurs
 	function get_all_realisateurs(){
 		$sql = "SELECT DISTINCT code_indiv,nom,prenom,nationalite,date_naiss,date_mort
-				FROM films NATURAL JOIN individus
-				WHERE realisateur=code_indiv
+				FROM films NATURAL JOIN individus NATURAL JOIN realisateurs
 				ORDER BY nom, prenom";
 		$stmt = $this->connexion->prepare($sql);
 		$stmt->execute();
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
 
-// recherche tous les films
+// recherche tous les films noir et blanc
     function get_all_noiretblanc(){
         $sql = "SELECT * from films
 				WHERE couleur='NB'
@@ -51,7 +50,7 @@ class Recherche{
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-// recherche tous les films
+// recherche tous les films en couleur
     function get_all_couleur(){
         $sql = "SELECT * from films
 				WHERE couleur='couleur'
@@ -63,7 +62,9 @@ class Recherche{
 
 // recherche tous les acteurs
   function get_all_acteurs(){
-    $sql = "SELECT * from individus ORDER BY nom, prenom";
+    $sql = "SELECT DISTINCT code_indiv,nom,prenom,nationalite,date_naiss,date_mort
+				FROM films NATURAL JOIN individus NATURAL JOIN acteurs
+				ORDER BY nom, prenom";
     $stmt = $this->connexion->prepare($sql);
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -79,7 +80,7 @@ class Recherche{
 
 //recherche tous les films d'un acteur
 	function films_par_acteurs($acteur){
-		$sql = "SELECT code_film,titre_original,titre_francais,pays,date,duree,couleur,realisateur,image
+		$sql = "SELECT code_film,titre_original,titre_francais,pays,date,duree,couleur,image
 						FROM films NATURAL JOIN  acteurs NATURAL JOIN  individus
 						WHERE code_indiv = $acteur ";
 		$stmt = $this->connexion->prepare($sql);
@@ -87,9 +88,19 @@ class Recherche{
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
 
+    //recherche tous les films d'un realisateur
+    function films_par_realisateur($realisateur){
+        $sql = "SELECT code_film,titre_original,titre_francais,pays,date,duree,couleur,image
+						FROM films NATURAL JOIN  realisateurs NATURAL JOIN  individus
+						WHERE code_indiv = $realisateur";
+        $stmt = $this->connexion->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 //recherche tous les films d'un même genres
 	function films_par_genre($genre){
-		$sql = "SELECT code_film,titre_original,titre_francais,pays,date,duree,couleur,realisateur,image
+		$sql = "SELECT code_film,titre_original,titre_francais,pays,date,duree,couleur,image
 		FROM films NATURAL JOIN  classification NATURAL JOIN  genres
 		WHERE code_genre=$genre";
 		$stmt = $this->connexion->prepare($sql);
@@ -141,9 +152,9 @@ class Recherche{
 
 //ajout d'un film
 function ajout_film($film){
-	$sql = " INSERT INTO films(code_film,titre_original,titre_francais,pays,date,duree,couleur,realisateur,image) VALUES (?,?,?,?,?,?,?,?,?)";
+	$sql = " INSERT INTO films(code_film,titre_original,titre_francais,pays,date,duree,couleur,image) VALUES (?,?,?,?,?,?,?,?)";
 	$stmt = $this->connexion->prepare($sql);
-	return $stmt->execute(array($film['code_film'],$film['titre_original'],$film['titre_francais'],$film['pays'],$film['date'],$film['duree'],$film['couleur'],$film['realisateur'],$film['image']));
+	return $stmt->execute(array($film['code_film'],$film['titre_original'],$film['titre_francais'],$film['pays'],$film['date'],$film['duree'],$film['couleur'],$film['image']));
 }
 
 //ajout d'un acteur
@@ -160,6 +171,12 @@ function ajout_genre($genre){
 	return $stmt->execute(array($genre['code_genre'],$genre['nom_genre']));
 }
 
+//ajout d'un realisateur
+    function ajout_realisateur($realisateur){
+        $sql = " INSERT INTO individus(code_indiv,nom,prenom,nationalite,date_naiss,date_mort) VALUES (?,?,?,?,?,?)";
+        $stmt = $this->connexion->prepare($sql);
+        return $stmt->execute(array($realisateur['code_indiv'],$realisateur['nom'],$realisateur['prenom'],$realisateur['nationalite'],$realisateur['date_naiss'],$realisateur['date_mort']));
+    }
 //supression d'un film
 function suppr_film($film){
 	$sql="DELETE FROM films WHERE code_film=?";
@@ -183,9 +200,9 @@ function suppr_genre($genre){
 
 //modification d'un film (avec $film toutes les valeurs)
 function modif_film($film){
-$sql = "UPDATE films SET titre_original=?,titre_francais=?,pays=?,date=?,duree=?,couleur=?,realisateur=?,image=? where code_film=?";
+$sql = "UPDATE films SET titre_original=?,titre_francais=?,pays=?,date=?,duree=?,couleur=?,image=? where code_film=?";
 $stmt=$this->connexion->prepare($sql);
-return $stmt->execute(array($film['titre_original'],$film['titre_francais'],$film['pays'],$film['date'],$film['duree'],$film['couleur'],$film['realisateur'],$film['image'],$film['code_film'],));
+return $stmt->execute(array($film['titre_original'],$film['titre_francais'],$film['pays'],$film['date'],$film['duree'],$film['couleur'],$film['image'],$film['code_film'],));
 }
 
 //modification d'un acteur(avec $acteur toutes les valeurs)

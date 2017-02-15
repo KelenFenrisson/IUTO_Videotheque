@@ -177,6 +177,38 @@ function director_list_action()
     require('acteurs.php');
 }
 
+// Contrôle liste de tous les réalisateurs
+function film_by_director_action($realisateur_id)
+{
+    $recherche = new Recherche();
+    $films = $recherche->films_par_realisateur($realisateur_id);
+    require('films.php');
+}
+
+// Contrôle liste de tous les réalisateurs
+function add_director_action($realisateur)
+{
+    $recherche = new Recherche();
+    $est_ajoute = $recherche->ajout_realisateur($realisateur);
+    require('acteurs.php');
+}
+
+// Contrôle liste de tous les réalisateurs
+function edit_director_action($realisateur)
+{
+    $recherche = new Recherche();
+    $est_modifie = $recherche->modif_realisateurs($realisateur);
+    require('acteurs.php');
+}
+
+// Contrôle liste de tous les réalisateurs
+function delete_director_action($realisateur_id)
+{
+    $recherche = new Recherche();
+    $est_efface = $recherche->suppr_realisateurs($realisateur_id);
+    require('acteurs.php');
+}
+
 // Contrôle liste de tous les films en noir et blanc
 function bnw_list_action()
 {
