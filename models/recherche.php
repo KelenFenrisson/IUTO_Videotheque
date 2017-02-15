@@ -32,9 +32,9 @@ class Recherche{
 
 // recherche tous les films
 	function get_all_realisateurs(){
-		$sql = "SELECT DISTINCT code_indiv,nom,prenom,nationalite,date_naiss,date_mort 
-				FROM films NATURAL JOIN individus 
-				WHERE realisateur=code_indiv 
+		$sql = "SELECT DISTINCT code_indiv,nom,prenom,nationalite,date_naiss,date_mort
+				FROM films NATURAL JOIN individus
+				WHERE realisateur=code_indiv
 				ORDER BY nom, prenom";
 		$stmt = $this->connexion->prepare($sql);
 		$stmt->execute();
@@ -43,8 +43,8 @@ class Recherche{
 
 // recherche tous les films
     function get_all_noiretblanc(){
-        $sql = "SELECT * from films 
-				WHERE couleur='NB' 
+        $sql = "SELECT * from films
+				WHERE couleur='NB'
 				ORDER BY titre_original";
         $stmt = $this->connexion->prepare($sql);
         $stmt->execute();
@@ -53,8 +53,8 @@ class Recherche{
 
 // recherche tous les films
     function get_all_couleur(){
-        $sql = "SELECT * from films 
-				WHERE couleur='couleur' 
+        $sql = "SELECT * from films
+				WHERE couleur='couleur'
 				ORDER BY titre_original";
         $stmt = $this->connexion->prepare($sql);
         $stmt->execute();
@@ -110,7 +110,7 @@ class Recherche{
 // recherche les acteurs d'un genre
 	function acteurs_par_genre($genre){
 		$sql = "SELECT code_indiv,nom,prenom,nationalite,date_naiss,date_mort
-						FROM films natural join acteurs natural join individus 
+						FROM films natural join acteurs natural join individus
 						NATURAL JOIN classification NATURAL JOIN  genres
 						WHERE code_genre = $genre ";
 		$stmt = $this->connexion->prepare($sql);
@@ -131,7 +131,7 @@ class Recherche{
 //recherche tous les genres d'un acteur
 	function genres_par_acteur($acteur){
 		$sql = "SELECT nom_genre
-		FROM films NATURAL JOIN  acteurs NATURAL JOIN  individus 
+		FROM films NATURAL JOIN  acteurs NATURAL JOIN  individus
 		NATURAL JOIN classification NATURAL JOIN  genres
 		WHERE code_indiv = $acteur";
 		$stmt = $this->connexion->prepare($sql);
@@ -162,21 +162,21 @@ function ajout_genre($genre){
 
 //supression d'un film
 function suppr_film($film){
-	$sql="DELETE FROM films WHERE ID=?";
+	$sql="DELETE FROM films WHERE code_film=?";
 	$stmt=$this->connexion->prepare($sql);
 	return $stmt->execute(array($film)) ;
 }
 
 //supression d'un acteur
 function suppr_acteur($acteur){
-	$sql="DELETE FROM individus WHERE ID=?";
+	$sql="DELETE FROM individus WHERE code_indiv=?";
 	$stmt=$this->connexion->prepare($sql);
 	return $stmt->execute(array($acteur));
 }
 
 //supression d'un genre
 function suppr_genre($genre){
-	$sql="DELETE FROM genres WHERE ID=?";
+	$sql="DELETE FROM genres WHERE code_genre=?";
 	$stmt=$this->connexion->prepare($sql);
 	return $stmt->execute(array($genre));
 }

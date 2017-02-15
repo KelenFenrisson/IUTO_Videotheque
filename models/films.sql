@@ -320,7 +320,7 @@ INSERT INTO `films` (`code_film`, `titre_original`, `titre_francais`, `pays`, `d
 (205, 'Roseaux sauvages (Les)                            ', 'Roseaux sauvages (Les)                            ', 'France              ', 1994, 110, 'couleur   ', 426, 'roseaux_sauv.jpeg   '),
 (276, 'Marie du port (La)                                ', 'Marie du port (La)                                ', 'France              ', 1950, 88, 'NB        ', 17, 'marie_port.jpg      '),
 (289, 'Gentlemen Prefer Blondes                          ', 'Hommes préfèrent les blondes (Les)                ', 'USA                 ', 1953, 91, 'couleur   ', 112, 'hommes_blondes.gif  '),
-(386, 'Advise & Consent                                  ', 'Tempête à Washington                              ', 'USA                 ', 1962, 142, 'NB        ', 336, 'tempete_wash.jpg    '),
+(386, 'Advise et Consent                                  ', 'Tempête à Washington                              ', 'USA                 ', 1962, 142, 'NB        ', 336, 'tempete_wash.jpg    '),
 (455, 'Esquive (L'')                                      ', 'Esquive (L'')                                      ', 'France              ', 2003, 117, 'couleur   ', 747, 'esquive.jpeg        '),
 (139, 'Intolerance                                       ', 'Intolérance                                       ', 'USA                 ', 1916, 178, 'NB        ', 293, 'intolerance.jpg     '),
 (310, 'Aguirre, der Zorn Gottes                          ', 'Aguirre, la colère de Dieu                        ', 'Allemagne           ', 1972, 100, 'couleur   ', 422, 'aguirre.jpg         '),
