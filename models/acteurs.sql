@@ -9,8 +9,8 @@ CREATE TABLE IF NOT EXISTS `acteurs` (
   `code_film` int(11) ,
   `code_indiv` int(11) ,
   CONSTRAINT acteurs_pk PRIMARY KEY(code_film, code_indiv),
-  CONSTRAINT acteurs_fk1 FOREIGN KEY(code_film) REFERENCES films(code_film),
-  CONSTRAINT acteurs_fk2 FOREIGN KEY(code_indiv) REFERENCES individus(code_indiv)
+  CONSTRAINT acteurs_fk1 FOREIGN KEY(code_film) REFERENCES films(code_film) ON DELETE CASCADE,
+  CONSTRAINT acteurs_fk2 FOREIGN KEY(code_indiv) REFERENCES individus(code_indiv) ON DELETE CASCADE
 );
 
 --

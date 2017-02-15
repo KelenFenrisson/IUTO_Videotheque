@@ -9,8 +9,8 @@ CREATE TABLE IF NOT EXISTS `classification` (
   `code_film` int(11) ,
   `code_genre` int(11) ,
   CONSTRAINT classification_pk PRIMARY KEY (code_film, code_genre),
-  CONSTRAINT classification_fk1 FOREIGN KEY(code_film) REFERENCES films(code_film),
-  CONSTRAINT classification_fk2 FOREIGN KEY(code_genre) REFERENCES genres(code_genre)
+  CONSTRAINT classification_fk1 FOREIGN KEY(code_film) REFERENCES films(code_film) ON DELETE CASCADE,
+  CONSTRAINT classification_fk2 FOREIGN KEY(code_genre) REFERENCES genres(code_genre) ON DELETE CASCADE
 );
 
 --

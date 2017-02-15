@@ -42,18 +42,18 @@ $filters = array(
 
 // DECOMMENTER CI DESSOUS POUR VOIR COMMENT LE FILTRE AGIT
 
-echo '$_GET';
-foreach ($_GET as $entry=>$getval)
-{
-    echo "<p> Entrée : $entry = $getval</p>";
-
-}
-echo '$_GET FILTRAGE';
-foreach ($filtered as $entry=>$filval)
-{
-    echo "<p> Entrée : $entry = $filval</p>";
-
-}
+//echo '$_GET';
+//foreach ($_GET as $entry=>$getval)
+//{
+//    echo "<p> Entrée : $entry = $getval</p>";
+//
+//}
+//echo '$_GET FILTRAGE';
+//foreach ($filtered as $entry=>$filval)
+//{
+//    echo "<p> Entrée : $entry = $filval</p>";
+//
+//}
 
 
 
