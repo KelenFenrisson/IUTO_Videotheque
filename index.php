@@ -144,21 +144,21 @@ switch ($action) {
         break;
 
     case "film_by_director":
-        film_by_director_action();
+        film_by_director_action($filtered['id']);
         break;
 
     case "add_film":
-        add_director_action();
+        add_director_action($filtered);
         break;
 
 
     case "edit_film":
-        edit_director_action();
+        edit_director_action($filtered);
         break;
 
 
     case "delete_film":
-        delete_director_action();
+        delete_director_action($filtered);
         break;
 
     case "bnw_list":

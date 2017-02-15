@@ -96,10 +96,10 @@ function actor_by_genre_action($genre_id)
 }
 
 // Contrôle ajout d'un acteur
-function add_actor_action($acteur)
+function add_actor_action($acteur, $film_id)
 {
     $recherche = new Recherche();
-    $est_ajoute = $recherche->ajout_acteur($acteur);
+    $est_ajoute = $recherche->ajout_acteur($acteur,  $film_id);
     require('acteurs.php');
 }
 
@@ -107,17 +107,18 @@ function add_actor_action($acteur)
 function edit_actor_action($acteur)
 {
     $recherche = new Recherche();
-    $est_edite = $recherche->modif_acteur($acteur);
+    $est_edite = $recherche->modif_individu($acteur);
     require('acteurs.php');
 }
 
 // Contrôle suppression d'un acteur
-function delete_actor_action($acteur_id)
+function delete_actor_action($actor_id, $film_id)
 {
     $recherche = new Recherche();
-    $est_efface = $recherche->suppr_acteur($acteur_id);
-    require('acteurs.php');
+    $est_efface = $recherche->suppr_acteur($actor_id, $film_id);
+    require('realisateurs.php');
 }
+
 
 // GESTION DES GENRES
 
@@ -173,8 +174,8 @@ function delete_genre_action($genre_id)
 function director_list_action()
 {
     $recherche = new Recherche();
-    $acteurs = $recherche->get_all_realisateurs();
-    require('acteurs.php');
+    $realisateurs = $recherche->get_all_realisateurs();
+    require('realisateurs.php');
 }
 
 // Contrôle liste de tous les réalisateurs
@@ -190,23 +191,23 @@ function add_director_action($realisateur)
 {
     $recherche = new Recherche();
     $est_ajoute = $recherche->ajout_realisateur($realisateur);
-    require('acteurs.php');
+    require('realisateurs.php');
 }
 
 // Contrôle liste de tous les réalisateurs
 function edit_director_action($realisateur)
 {
     $recherche = new Recherche();
-    $est_modifie = $recherche->modif_realisateurs($realisateur);
-    require('acteurs.php');
+    $est_modifie = $recherche->modif_individu($realisateur);
+    require('realisateurs.php');
 }
 
 // Contrôle liste de tous les réalisateurs
-function delete_director_action($realisateur_id)
+function delete_director_action($realisateur_id, $film_id)
 {
     $recherche = new Recherche();
-    $est_efface = $recherche->suppr_realisateurs($realisateur_id);
-    require('acteurs.php');
+    $est_efface = $recherche->suppr_realisateur($realisateur_id, $film_id);
+    require('realisateurs.php');
 }
 
 // Contrôle liste de tous les films en noir et blanc
