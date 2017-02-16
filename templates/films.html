@@ -14,6 +14,7 @@
     <select name="lettre_film" id="lettre_film" size="1" onchange="changefilm(this)">
         <option id="cachezClick_lettre" selected="selected">Choisis une lettre</option>
 
+        <option>0-9</option>
         <option>A</option>
         <option>B</option>
         <option>C</option>
@@ -53,7 +54,8 @@
 
     {% for film in films %}
     <tr id="{{film.code_film}}">
-        <td>{{film.titre_original}}</td>
+
+        <td><a href="#" onclick="info('{{film.titre_original}}','{{film.titre_francais}}','{{film.pays}}','{{film.date}}','{{film.duree}}','{{film.couleur}}')"> {{film.titre_original}} </a></td>
         <td>{{film.date}}</td>
         <td>{{film.duree}}</td>
         <td><a href="index.php?action=edit_film&id={{ film.code_film }}">M</a><a href="index.php?action=delete_film&id={{ film.code_film }}">X</a> </td>
@@ -69,32 +71,77 @@
 </div>
 {% endblock %}
 
+
+{% block information %}
+  <table>
+    <tr>
+      <td>titre_original</td>
+      <td>titre_francais</td>
+      <td>pays</td>
+      <td>date</td>
+      <td>duree</td>
+      <td>couleur</td>
+    </tr>
+    <tr>
+      <td id="TO">titre_original</td>
+      <td id="TF">titre_francais</td>
+      <td id="Pays">pays</td>
+      <td id="Date">date</td>
+      <td id="Duree">duree</td>
+      <td id="Couleur">couleur</td>
+    </tr>
+</table>
+{% endblock %}
+
 {% block javascript%}
 
-function changefilm(name){
-console.log(name.value);
-cacher_film(name.value);
-document.getElementById('cachezClick_lettre').style.display = 'none';
-}
+var sectionInfo = document.getElementById('info');
+sectionInfo.style.visibility="collapse";
 
-function cacher_film(name){
-var chaineCarac="^["+name+"]";
-console.log(chaineCarac);
-regfilm = new RegExp(chaineCarac);
-
-{% for film in films%}
-
-var codefilm = document.getElementById('{{film.code_film}}');
-
-if (!regfilm.test('{{film.titre_original}}'))
+function info(to,tf,pays,date,duree,couleur)
 {
-codefilm.style.display="none";
+  sectionInfo.style.visibility="visible";
+  console.log(to);
+  console.log(tf);
+  console.log(pays);
+  console.log(date);
+  console.log(duree);
+  console.log(couleur);
+
+  document.getElementById('TO').innerHTML = to;
+  document.getElementById('TF').innerHTML = tf;
+  document.getElementById('Pays').innerHTML = pays;
+  document.getElementById('Date').innerHTML = date;
+  document.getElementById('Duree').innerHTML = duree;
+  document.getElementById('Couleur').innerHTML = couleur;
 }
-else
+
+function changefilm(name)
 {
-codefilm.style.display="block";
+  console.log(name.value);
+  cacher_film(name.value);
+  document.getElementById('cachezClick_lettre').style.display = 'none';
 }
-{% endfor %}
+
+function cacher_film(name)
+{
+  var chaineCarac="^["+name+"]";
+  console.log(chaineCarac);
+  regfilm = new RegExp(chaineCarac);
+
+  {% for film in films%}
+
+  var codefilm = document.getElementById('{{film.code_film}}');
+
+  if (!regfilm.test('{{film.titre_original}}'))
+  {
+    codefilm.style.visibility="collapse";
+  }
+  else
+  {
+    codefilm.style.visibility="visible";
+  }
+  {% endfor %}
 }
 
 {% endblock %}

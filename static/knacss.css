@@ -28,6 +28,25 @@
  * 1. Change the default font family in all browsers (opinionated).
  * 2. Prevent adjustments of font size after orientation changes in IE and iOS.
  */
+
+/*modif ligne 897 pour table*/
+body{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content: space-around;;
+}
+header{
+  flex:2 2 100%;
+}
+#content{
+  align-self: flex-start;
+}
+#info{
+  margin-top: 100px;
+}
+footer{
+  flex:2 2 100%;
+}
 html {
   font-family: sans-serif;
   /* 1 */
@@ -877,8 +896,8 @@ th {
 /* ----------------------------- */
 table,
 .table {
-  width: 100%;
-  max-width: 100%;
+  /*width: 100%;
+  max-width: 100%;*/
   table-layout: fixed;
   border-collapse: collapse;
   vertical-align: top;

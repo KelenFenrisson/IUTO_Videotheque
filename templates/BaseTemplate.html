@@ -3,8 +3,8 @@
 <head>
     {% block head %}
     <meta charset="utf-8">
-    <!--<link rel="stylesheet" href="static/styles.css" media="screen" title="no title" charset="utf-8">-->
-    <!--<link rel="stylesheet" href="static/knacss.css" media="screen" title="no title" charset="utf-8">-->
+    <link rel="stylesheet" href="static/styles.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="static/knacss.css" media="screen" title="no title" charset="utf-8">
     <title>{% block title %}{% endblock %}</title>
     {% endblock %}
 </head>
@@ -21,10 +21,14 @@
         </ul>
     </nav>
 </header>
+
 <section id="content">
     {% block content %}{% endblock %}
 </section>
 
+<section id="info">
+  {% block information %}{% endblock %}
+</section>
 
 <footer>
     {% block footer %}
