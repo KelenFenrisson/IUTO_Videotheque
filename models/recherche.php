@@ -69,7 +69,7 @@ class Recherche{
     function films_par_acteurs($acteur){
         $sql = "SELECT code_film,titre_original,titre_francais,pays,date,duree,couleur,image
                 FROM films NATURAL JOIN  acteurs
-                WHERE code_indiv = ? 
+                WHERE code_indiv = ?
                 ORDER BY titre_original, titre_francais";
         $stmt = $this->connexion->prepare($sql);
         $stmt->execute(array($acteur));
@@ -113,7 +113,7 @@ class Recherche{
     function acteurs_par_film($film){
         $sql = "SELECT code_indiv,nom,prenom,nationalite,date_naiss,date_mort
 						FROM films NATURAL JOIN  acteurs NATURAL JOIN  individus
-						WHERE code_film = ? 
+						WHERE code_film = ?
 						ORDER BY nom, prenom";
         $stmt = $this->connexion->prepare($sql);
         $stmt->execute(array($film));
@@ -125,7 +125,7 @@ class Recherche{
         $sql = "SELECT DISTINCT code_indiv,nom,prenom,nationalite,date_naiss,date_mort
 						FROM films NATURAL JOIN acteurs NATURAL JOIN individus
 						NATURAL JOIN classification
-						WHERE code_genre = ? 
+						WHERE code_genre = ?
 						ORDER BY nom, prenom";
         $stmt = $this->connexion->prepare($sql);
         $stmt->execute(array($genre));
@@ -204,7 +204,7 @@ class Recherche{
     function genres_par_film($film_id){
         $sql = "SELECT code_genre, nom_genre
 		FROM films NATURAL JOIN  classification NATURAL JOIN  genres
-		WHERE code_film = ? 
+		WHERE code_film = ?
 		ORDER BY nom_genre";
         $stmt = $this->connexion->prepare($sql);
         $stmt->execute(array($film_id));
@@ -239,9 +239,9 @@ class Recherche{
 
 //ajout d'un film
     function ajout_film($film){
-        $sql = " INSERT INTO films(code_film,titre_original,titre_francais,pays,date,duree,couleur,image) VALUES (?,?,?,?,?,?,?,?)";
+        $sql = " INSERT INTO films(titre_original,titre_francais,pays,date,duree,couleur,image) VALUES (?,?,?,?,?,?,?)";
         $stmt = $this->connexion->prepare($sql);
-        return $stmt->execute(array($film['code_film'],$film['titre_original'],$film['titre_francais'],$film['pays'],$film['date'],$film['duree'],$film['couleur'],$film['image']));
+        return $stmt->execute(array($film['titre_original'],$film['titre_francais'],$film['pays'],$film['date'],$film['duree'],$film['couleur'],$film['image']));
     }
 
 //ajout d'un individu

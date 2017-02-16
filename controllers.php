@@ -17,17 +17,17 @@ include 'models/recherche.php';
  * film_by_actor_action($actor_id)
  * film_by_genre_action($genre_id)
  * film_by_director_action($director_id)
- * 
+ *
  * actor_list_action()
  * actor_by_film_action($film_id)
  * actor_by_genre_action($genre_id)
  * actor_by_director_action($director_id)
- * 
+ *
  * genre_list_action()
  * genre_by_film_action($film_id)
  * genre_by_actor_action($actor_id)
  * genre_by_director_action($director_id)
- * 
+ *
  * director_list_action()
  * director_by_film_action($film_id)
  * director_by_actor_action($actor_id)
@@ -35,7 +35,7 @@ include 'models/recherche.php';
  *
  *
  * -- CREATION
- * 
+ *
  * add_film_action()
  * add_actor_action()
  * add_genre_action()
@@ -44,7 +44,7 @@ include 'models/recherche.php';
  *
  *
  * -- MISE A JOUR
- * 
+ *
  * update_film_action()
  * update_actor_action()
  * update_genre_action()
