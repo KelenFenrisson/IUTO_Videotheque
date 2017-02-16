@@ -22,12 +22,15 @@
     </nav>
 </header>
 
-<h2>{% block titleBody %}{% endblock %}</h2>
+<h2 id="titreBase">{% block titleBody %}{% endblock %}</h2>
 
-<section id="formulaireAjoutModif">
+<section id="formulaireAjout">
   {% block FormulaireAjout %}{% endblock %}
-  <!-- {% block FormulaireModif %}{% endblock %} -->
 </section>
+
+<!-- <section id="formulaireModif">
+  {% block FormulaireModif %}{% endblock %}
+</section> -->
 
 <section id="content">
     {% block content %}{% endblock %}

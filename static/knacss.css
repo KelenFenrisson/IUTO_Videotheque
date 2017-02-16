@@ -38,6 +38,9 @@ body{
 header{
   flex:2 2 100%;
 }
+#titreBase{
+  flex:2 2 100%;
+}
 #content{
   align-self: flex-start;
 }
@@ -47,6 +50,7 @@ header{
 footer{
   flex:2 2 100%;
 }
+
 html {
   font-family: sans-serif;
   /* 1 */

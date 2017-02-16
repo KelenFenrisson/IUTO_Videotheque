@@ -22,7 +22,7 @@
 <input type="text" name="pays"  id="pays" size="15" title="Entre ici le pays" placeholder="Pays" required  />
 <label  for="date">date:</label>
 <input type="text" name="date"  id="date" size="4" title="Entre ici la date" placeholder="Date" required  />
-<label  for="duree">duree:</label>
+<label  for="duree">durée:</label>
 <input type="text" name="duree"  id="duree" size="5" title="Entre ici la durée en min" placeholder="Durée" required  />
 <label  for="couleur">couleur:</label>
 <select  name="couleur" id="couleur" size="1" >
@@ -79,7 +79,7 @@
         <td>Titre Film </td>
         <td> Date </td>
         <td> Durée </td>
-        <td><a href="index.php?action=add_film">+</a></td>
+        <td><a href="#" onclick="ajouter()">+</a></td>
     </tr>
     {% for film in films %}
     <tr id="{{film.code_film}}">
@@ -122,9 +122,19 @@
 
 {% block javascript%}
 
+<!-- cachez Tableau informations film/Formulaire ajout /Formulaire Modifier -->
 var sectionInfo = document.getElementById('info');
 sectionInfo.style.visibility="collapse";
+var formulaireAjout = document.getElementById('formulaireAjout');
+formulaireAjout.style.visibility="collapse";
 
+<!--  Fonction qui fait apparaitre le formulaire ajouter film-->
+function ajouter(){
+  formulaireAjout.style.visibility="visible";
+
+}
+
+<!--  Fais apparaitre les infos du film dans un tableau-->
 function info(to,tf,pays,date,duree,couleur)
 {
   sectionInfo.style.visibility="visible";
@@ -143,6 +153,7 @@ function info(to,tf,pays,date,duree,couleur)
   document.getElementById('Couleur').innerHTML = couleur;
 }
 
+<!-- fonction permet de cacher les films + faire disparaitre choisir une lettre de la liste deroulante -->
 function changefilm(name)
 {
   console.log(name.value);
@@ -150,6 +161,7 @@ function changefilm(name)
   document.getElementById('cachezClick_lettre').style.display = 'none';
 }
 
+<!--  permet de modifier le pattern pour afficher/cacher les films-->
 function cacher_film(name)
 {
   var chaineCarac="^["+name+"]";
@@ -170,5 +182,6 @@ function cacher_film(name)
   }
   {% endfor %}
 }
+
 
 {% endblock %}
