@@ -39,7 +39,7 @@
 {% endblock %}
 
 {% block content %}
-<div >
+<div>
     <label for=lettre_film>Film :</label>
     <select name="lettre_film" id="lettre_film" size="1" onchange="changefilm(this)">
         <option id="cachezClick_lettre" selected="selected">Choisis une lettre</option>
@@ -82,10 +82,10 @@
     </tr>
     {% for film in films %}
     <tr id="{{film.code_film}}">
-        <td><a href="#" onclick="info('{{film.titre_original}}','{{film.titre_francais}}','{{film.pays}}','{{film.date}}','{{film.duree}}','{{film.couleur}}')"> {{film.titre_original}} </a></td>
+        <td><a href="#" onclick='info("{{film.titre_original}}","{{film.titre_francais}}","{{film.pays}}","{{film.date}}","{{film.duree}}","{{film.couleur}}")'> {{film.titre_original}} </a></td>
         <td>{{film.date}}</td>
         <td>{{film.duree}}</td>
-        <td><a href="#"  onclick="modification('{{film.code_film}}','{{film.titre_original}}','{{film.titre_francais}}','{{film.pays}}','{{film.date}}','{{film.duree}}','{{film.couleur}}')">M</a><a href="index.php?action=delete_film&id={{ film.code_film }}">X</a> </td>
+        <td><a href="#"  onclick='modification("{{film.code_film}}","{{film.titre_original}}","{{film.titre_francais}}","{{film.pays}}","{{film.date}}","{{film.duree}}","{{film.couleur}}")'>M</a><a href="index.php?action=delete_film&id={{ film.code_film }}">X</a> </td>
     </tr>
     {% endfor %}
 </table>
