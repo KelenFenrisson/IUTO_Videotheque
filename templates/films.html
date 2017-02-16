@@ -37,6 +37,32 @@
 </form>
 {% endblock %}
 
+{%block FormulaireModif %}
+<fieldset id="ajout_film">
+<form action="index.php" method="GET"  name="formu_inserer">
+<input type="hidden" name="action" value="update_film">
+<label  for="titre_original">Tittre original :</label>
+<input type="text" name="titre_original"  id="titre_original" size="20" title="Entre ici le titre original" placeholder="Titre original" required  />
+<label  for="titre_francais">titre_francais:</label>
+<input type="text" name="titre_francais"  id="titre_francais" size="20" title="Entre ici le titre français" placeholder="Titre français" required  />
+<label  for="pays">pays:</label>
+<input type="text" name="pays"  id="pays" size="15" title="Entre ici le pays" placeholder="Pays" required  />
+<label  for="date">date:</label>
+<input type="text" name="date"  id="date" size="4" title="Entre ici la date" placeholder="Date" required  />
+<label  for="duree">durée:</label>
+<input type="text" name="duree"  id="duree" size="5" title="Entre ici la durée en min" placeholder="Durée" required  />
+<label  for="couleur">couleur:</label>
+<select  name="couleur" id="couleur" size="1" >
+  <option>NB</option>
+  <option>couleur</option>
+</select>
+<label  for="image">image:</label>
+<input type="text" name="image"  id="image" size="15" title="Entre ici le nom de l'image" placeholder="Chemin Image" required  />
+<input type="submit" value="Ajouter un film">
+</form>
+</fieldset>
+</form>
+{% endblock %}
 
 
 {% block content %}
