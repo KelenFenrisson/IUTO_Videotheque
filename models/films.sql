@@ -6,7 +6,7 @@
 
 DROP TABLE IF EXISTS `films`;
 CREATE TABLE IF NOT EXISTS `films` (
-  `code_film` int(11) NOT NULL,
+  `code_film` int(11) NOT NULL AUTO_INCREMENT,
   `titre_original` varchar(50) NOT NULL,
   `titre_francais` varchar(50) DEFAULT NULL,
   `pays` varchar(20) DEFAULT NULL,
