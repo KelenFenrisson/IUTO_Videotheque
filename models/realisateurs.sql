@@ -6,7 +6,7 @@
 
 DROP TABLE IF EXISTS `realisateurs`;
 CREATE TABLE IF NOT EXISTS `realisateurs` (
-  `code_film` int(11) ,
+  `code_film` int(11),
   `code_indiv` int(11),
   CONSTRAINT realisateurs_pk PRIMARY KEY(code_film),
   CONSTRAINT realisateurs_fk1 FOREIGN KEY(code_film) REFERENCES films(code_film) ON DELETE CASCADE,
