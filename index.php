@@ -55,17 +55,20 @@ $filters = array(
 //
 //}
 
-
-
-
 $filtered = filter_input_array(INPUT_GET, $filters);
 $action = $filtered['action'] ?? 'index';
 $message="";
+
+
+
 
 switch ($action) {
     case "index":
         index_action();
         break;
+/////////////////////////////////////////////////   CONSULTATION   /////////////////////////////////////////////////////
+
+    //// FILM
 
     case "film_list":
         film_list_action();
@@ -79,17 +82,11 @@ switch ($action) {
         film_by_genre_action($filtered['id']);
         break;
 
-    case "add_film":
-        add_film_action($filtered);
+    case "film_by_director":
+        film_by_director_action($filtered['id']);
         break;
-        
-    case "edit_film":
-        edit_film_action($filtered);
-        break;
-        
-    case "delete_film":
-        delete_film_action($filtered['id']);
-        break;
+
+    //// ACTEUR
 
     case "actor_list":
         actor_list_action();
@@ -103,71 +100,106 @@ switch ($action) {
         actor_by_film_action($filtered['id']);
         break;
 
-    case "add_actor":
-        add_actor_action($filtered);
+    case "actor_by_director":
+        actor_by_director_action($filtered['id']);
         break;
 
-    case "edit_actor":
-        edit_actor_action($filtered);
-        break;
-
-    case "delete_actor":
-        delete_actor_action($filtered['id']);
-        break;
+    //// GENRE
 
     case "genre_list":
         genre_list_action();
         break;
-        
+
     case "genre_by_film":
-        genre_list_action();
+        genre_by_film_action($filtered['id']);
         break;
-        
+
     case "genre_by_actor":
-        genre_list_action();
+        genre_by_actor_action($filtered['id']);
+        break;
+
+    case "genre_by_director":
+        genre_by_director_action($filtered['id']);
+        break;
+
+    //// REALISATEUR
+
+    case "director_list":
+        director_list_action();
+        break;
+
+    case "director_by_film":
+        director_by_film_action($filtered['id']);
+        break;
+
+    case "director_by_actor":
+        director_by_actor_action($filtered['id']);
+        break;
+
+    case "director_by_genre":
+        director_by_genre_action($filtered['id']);
+        break;
+
+    //// PERSONNES
+    case "people_list":
+        people_list_action();
+        break;
+///////////////////////////////////////////////////   CREATION   ///////////////////////////////////////////////////////
+
+    case "add_film":
+        add_film_action($filtered);
+        break;
+
+
+    case "add_actor":
+        add_actor_action($filtered, $filtered['film_id']);
         break;
 
     case "add_genre":
         add_genre_action($filtered);
         break;
 
-    case "edit_genre":
-        edit_genre_action($filtered);
+    case "add_director":
+        add_director_action($filtered, $filtered['film_id']);
+        break;
+
+/////////////////////////////////////////////////   MODIFICATION   /////////////////////////////////////////////////////
+
+    case "update_film":
+        update_film_action($filtered);
+        break;
+
+    case "update_actor":
+        update_actor_action($filtered, $filtered['film_id']);
+        break;
+
+    case "update_director":
+        update_director_action($filtered, $filtered['film_id']);
+        break;
+
+    case "update_genre":
+        update_genre_action($filtered);
+        break;
+
+/////////////////////////////////////////////////   SUPPRESSION   //////////////////////////////////////////////////////
+
+    case "delete_film":
+        delete_film_action($filtered['id']);
+        break;
+
+    case "delete_actor":
+        delete_actor_action($filtered['id'], $filtered['film_id']);
         break;
 
     case "delete_genre":
         delete_genre_action($filtered['id']);
         break;
 
-    case "director_list":
-        director_list_action();
+    case "delete_director":
+        delete_director_action($filtered, $filtered['film_id']);
         break;
 
-    case "film_by_director":
-        film_by_director_action($filtered['id']);
-        break;
-
-    case "add_film":
-        add_director_action($filtered);
-        break;
-
-
-    case "edit_film":
-        edit_director_action($filtered);
-        break;
-
-
-    case "delete_film":
-        delete_director_action($filtered);
-        break;
-
-    case "bnw_list":
-        bnw_list_action();
-        break;
-
-    case "color_list":
-        color_list_action();
-        break;
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     default:
         pagenotfound_action();
