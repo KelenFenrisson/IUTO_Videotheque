@@ -18,9 +18,11 @@ try {
     $template = $twig->loadTemplate('films.html');
     $titre = "Liste des films ";
     echo $template->render(array(
-      'titre'=>$titre,
-      'films'=> $films,
+        'titre'=>$titre,
+        'films'=> $films,
+        'message'=>$msg
     ));
+
   }catch (Exception $e){
     die('ERROR: '.$e->getMessage());
   }
