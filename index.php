@@ -27,7 +27,8 @@ $filters = array(
     'couleur'    => FILTER_SANITIZE_STRING,
     'realisateur'    =>  FILTER_SANITIZE_STRING,
 
-    // champs date : Vu que ça ne sont que des années, on les verifie comme des entiers
+    // champs duree et date : Vu que ça ne sont que des années ou minutes, on les verifie comme des entiers
+    'duree'    => FILTER_SANITIZE_NUMBER_INT,
     'date'    => FILTER_SANITIZE_NUMBER_INT,
     'date_naiss'    =>  FILTER_SANITIZE_NUMBER_INT,
     'date_mort'    =>  FILTER_SANITIZE_NUMBER_INT,
@@ -41,7 +42,7 @@ $filters = array(
 
 
 // DECOMMENTER CI DESSOUS POUR VOIR COMMENT LE FILTRE AGIT
-
+//
 //echo '$_GET';
 //foreach ($_GET as $entry=>$getval)
 //{
@@ -49,12 +50,12 @@ $filters = array(
 //
 //}
 //echo '$_GET FILTRAGE';
-//foreach ($filtered as $entry=>$filval)
+//foreach ($filtered as $entry2=>$filval)
 //{
-//    echo "<p> Entrée : $entry = $filval</p>";
+//    echo "<p> Entrée : $entry2 = $filval</p>";
 //
 //}
-
+//
 $filtered = filter_input_array(INPUT_GET, $filters);
 $action = $filtered['action'] ?? 'index';
 $message="";
