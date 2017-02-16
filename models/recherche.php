@@ -48,6 +48,13 @@ class Recherche{
      * director_by_genre($genre)
      *
      * ****************************************************************************************************************/
+    // recherche tous les individus
+    function get_all_individus(){
+        $sql = "SELECT * from individus ORDER BY nom,prenom";
+        $stmt = $this->connexion->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
     // recherche tous les films
     function get_all_films(){

@@ -249,11 +249,11 @@ function director_by_genre_action($genre_id)
     require('realisateurs.php');
 }
 
-// Contrôle realisateurs en fonction d'un realisateur
-function people_list_action($people_id)
+// Contrôle lister toutes les personnes
+function people_list_action()
 {
     $recherche = new Recherche();
-    $people = $recherche->realisateurs_par_genre($people_id);
+    $peoples = $recherche->get_all_individus();
     require('peoples.php');
 }
 
