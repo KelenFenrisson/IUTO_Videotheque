@@ -142,7 +142,7 @@ function film_by_genre_action($genre_id)
 function film_by_director_action($director_id)
 {
     $recherche = new Recherche();
-    $films = $recherche->films_par_genre($director_id);
+    $films = $recherche->films_par_realisateur($director_id);
     require('films.php');
 }
 
@@ -168,7 +168,7 @@ function actor_by_film_action($film_id)
 function actor_by_genre_action($genre_id)
 {
     $recherche = new Recherche();
-    $acteurs = $recherche->acteurs_par_realisateurs($genre_id);
+    $acteurs = $recherche->acteurs_par_genre($genre_id);
     require('acteurs.php');
 }
 
@@ -210,7 +210,7 @@ function genre_by_actor_action($actor_id)
 function genre_by_director_action($director_id)
 {
     $recherche = new Recherche();
-    $genres = $recherche->acteurs_par_realisateurs($director_id);
+    $genres = $recherche->genres_par_realisateur($director_id);
     require('genres.php');
 }
 
@@ -279,7 +279,7 @@ function add_film_action($film_info)
 }
 
 // Ajout d'un individu
-function add_person_action($people_info)
+function add_people_action($people_info)
 {
     $recherche = new Recherche();
     $est_ajoute = $recherche->ajout_individu($people_info);
@@ -333,7 +333,7 @@ function update_film_action($film_info)
 }
 
 // modif d'un individu
-function update_person_action($people_info)
+function update_people_action($people_info)
 {
     $recherche = new Recherche();
     $est_modifie = $recherche->modif_individu($people_info);
@@ -387,7 +387,7 @@ function delete_film_action($film_id)
 }
 
 // suppr d'un individu
-function delete_person_action($people_id)
+function delete_people_action($people_id)
 {
     $recherche = new Recherche();
     $est_efface = $recherche->suppr_individu($people_id);

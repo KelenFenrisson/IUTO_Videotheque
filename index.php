@@ -150,6 +150,9 @@ switch ($action) {
         add_film_action($filtered);
         break;
 
+    case "add_people":
+        add_people_action($filtered);
+        break;
 
     case "add_actor":
         add_actor_action($filtered, $filtered['film_id']);
@@ -169,6 +172,10 @@ switch ($action) {
         update_film_action($filtered);
         break;
 
+    case "update_people":
+        update_people_action($filtered);
+        break;
+
     case "update_actor":
         update_actor_action($filtered, $filtered['film_id']);
         break;
@@ -185,6 +192,10 @@ switch ($action) {
 
     case "delete_film":
         delete_film_action($filtered['id']);
+        break;
+
+    case "delete_people":
+        delete_people_action($filtered['id']);
         break;
 
     case "delete_actor":

@@ -1,41 +1,41 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-        {% block head %}
-        <meta charset="utf-8">
-        <!--<link rel="stylesheet" href="static/styles.css" media="screen" title="no title" charset="utf-8">-->
-        <!--<link rel="stylesheet" href="static/knacss.css" media="screen" title="no title" charset="utf-8">-->
-        <title>{% block title %}{% endblock %}</title>
-        {% endblock %}
-  </head>
-  <body>
-    <header>
-      <h1><a href="index.php"> Base de Donnée des Films des Internets </a></h1>
-        <nav>
-            <ul>
-                <li><a href="index.php?action=film_list">Liste des films</a></li>
-                <li><a href="index.php?action=actor_list">Liste des acteurs</a></li>
-                <li><a href="index.php?action=director_list">Liste des réalisateurs</a></li>
-                <li><a href="index.php?action=genre_list">Liste des genres</a></li>
-                <li><a href="index.php?action=people_list">Liste des individus</a></li>
-            </ul>
-        </nav>
-    </header>
-    <section id="content">
-      {% block content %}{% endblock %}
-    </section>
+<head>
+    {% block head %}
+    <meta charset="utf-8">
+    <!--<link rel="stylesheet" href="static/styles.css" media="screen" title="no title" charset="utf-8">-->
+    <!--<link rel="stylesheet" href="static/knacss.css" media="screen" title="no title" charset="utf-8">-->
+    <title>{% block title %}{% endblock %}</title>
+    {% endblock %}
+</head>
+<body>
+<header>
+    <h1><a href="index.php"> Base de Donnée des Films des Internets </a></h1>
+    <nav>
+        <ul>
+            <li><a href="index.php?action=film_list">Liste des films</a></li>
+            <li><a href="index.php?action=actor_list">Liste des acteurs</a></li>
+            <li><a href="index.php?action=director_list">Liste des réalisateurs</a></li>
+            <li><a href="index.php?action=genre_list">Liste des genres</a></li>
+            <li><a href="index.php?action=people_list">Liste des individus</a></li>
+        </ul>
+    </nav>
+</header>
+<section id="content">
+    {% block content %}{% endblock %}
+</section>
 
 
-    <footer>
-      {% block footer %}
-      &copy; Copyright 2017 <a href="https://BDFI.com">Mon super site</a>
-      {% endblock %}
-    </footer>
+<footer>
+    {% block footer %}
+    &copy; Copyright 2017 <a href="https://BDFI.com">Mon super site</a>
+    {% endblock %}
+</footer>
 
-    <script>
+<script>
     {% block javascript %}
     {%endblock%}
-    </script>
-  </body>
+</script>
+</body>
 
 </html>

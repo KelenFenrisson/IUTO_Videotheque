@@ -9,32 +9,42 @@
 
 <h2>{{titre}}</h2>
 <table>
-  <tr>
-    <td>Nom </td>
-    <td>Prénom </td>
-      <td>Nationalité</td>
-      <td>Date de naissance</td>
-      <td>Date de décès</td>
-      <td><a href="index.php?action=add_actor">+</a></td>
-  </tr>
-  {% for acteur in acteurs %}
+    <tr>
+        <td>Nom </td>
+        <td>Prénom </td>
+        <td>Nationalité</td>
+        <td>Date de naissance</td>
+        <td>Date de décès</td>
+        <td>Filmographie</td>
+        <td>Realisateurs</td>
+        <td>Genres</td>
+        <td>Ajouter un rôle</td>
+        <td>Modifier informations</td>
+        <td>Supprimer un rôle</td>
+    </tr>
+    {% for acteur in acteurs %}
 
-  <tr>
-    <td><a href="index.php?action=film_by_actor&id={{acteur.code_indiv}}"> {{acteur.nom}} </a></td>
-    <td>{{acteur.prenom}}</td>
-    <td>{{acteur.nationalite}}</td>
-    <td>{{acteur.date_naiss}}</td>
-    <td>{{acteur.date_mort}}</td>
-      <td><a href="index.php?action=edit_actor&id={{ actor.code_indiv }}">M</a><a href="index.php?action=delete_actor&id={{ actor.code_indiv }}">X</a> </td>
-  </tr>
+    <tr>
+        <td>{{acteur.nom}}</td>
+        <td>{{acteur.prenom}}</td>
+        <td>{{acteur.nationalite}}</td>
+        <td>{{acteur.date_naiss}}</td>
+        <td>{{acteur.date_mort}}</td>
+        <td><a href="index.php?action=film_by_actor&id={{acteur.code_indiv}}"> ¤</a></td>
+        <td><a href="index.php?action=director_by_actor&id={{acteur.code_indiv}}">*</a></td>
+        <td><a href="index.php?action=genre_by_actor&id={{acteur.code_indiv}}">$</a></td>
+        <td>+</td>
+        <td>~</td>
+        <td>-</td>
+    </tr>
 
-  {% endfor %}
+    {% endfor %}
 
 
 </table>
 <div id="message">
-  {% if est_ajoute %} <p> Supprimé avec succès </p> {% endif %}
-  {% if est_modifie %} <p> Modifié avec succès </p> {% endif %}
-  {% if est_efface %} <p> Effacé avec succès </p> {% endif %}
+    {% if est_ajoute %} <p> Supprimé avec succès </p> {% endif %}
+    {% if est_modifie %} <p> Modifié avec succès </p> {% endif %}
+    {% if est_efface %} <p> Effacé avec succès </p> {% endif %}
 </div>
 {% endblock %}

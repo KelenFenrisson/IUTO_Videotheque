@@ -10,90 +10,91 @@
 <h2>{{titre}}</h2>
 
 <div >
-  <label for=lettre_film>Film :</label>
-  <select name="lettre_film" id="lettre_film" size="1" onchange="changefilm(this)">
-  <option id="cachezClick_lettre" selected="selected">Choisis une lettre</option>
-  <option>A</option>
-  <option>B</option>
-  <option>C</option>
-  <option>D</option>
-  <option>E</option>
-  <option>F</option>
-  <option>G</option>
-  <option>H</option>
-  <option>I</option>
-  <option>J</option>
-  <option>K</option>
-  <option>L</option>
-  <option>M</option>
-  <option>N</option>
-  <option>O</option>
-  <option>P</option>
-  <option>Q</option>
-  <option>R</option>
-  <option>S</option>
-  <option>T</option>
-  <option>U</option>
-  <option>V</option>
-  <option>W</option>
-  <option>X</option>
-  <option>Y</option>
-  <option>Z</option>
-  </select>
+    <label for=lettre_film>Film :</label>
+    <select name="lettre_film" id="lettre_film" size="1" onchange="changefilm(this)">
+        <option id="cachezClick_lettre" selected="selected">Choisis une lettre</option>
+
+        <option>A</option>
+        <option>B</option>
+        <option>C</option>
+        <option>D</option>
+        <option>E</option>
+        <option>F</option>
+        <option>G</option>
+        <option>H</option>
+        <option>I</option>
+        <option>J</option>
+        <option>K</option>
+        <option>L</option>
+        <option>M</option>
+        <option>N</option>
+        <option>O</option>
+        <option>P</option>
+        <option>Q</option>
+        <option>R</option>
+        <option>S</option>
+        <option>T</option>
+        <option>U</option>
+        <option>V</option>
+        <option>W</option>
+        <option>X</option>
+        <option>Y</option>
+        <option>Z</option>
+    </select>
 </div>
 
 <table>
-  <tr>
-    <td>Titre Film </td>
-    <td> Date </td>
-    <td> Durée </td>
-      <td><a href="index.php?action=add_film">+</a></td>
-  </tr>
+    <tr>
+        <td>Titre Film </td>
+        <td> Date </td>
+        <td> Durée </td>
+        <td><a href="index.php?action=add_film">+</a></td>
+    </tr>
 
-  {% for film in films %}
-  <tr id="{{film.code_film}}">
-    <td>{{film.titre_original}}</td>
-    <td>{{film.date}}</td>
-    <td>{{film.duree}}</td>
-    <td><a href="index.php?action=edit_film&id={{ film.code_film }}">M</a><a href="index.php?action=delete_film&id={{ film.code_film }}">X</a> </td>
-  </tr>
-  {% endfor %}
+    {% for film in films %}
+    <tr id="{{film.code_film}}">
+        <td>{{film.titre_original}}</td>
+        <td>{{film.date}}</td>
+        <td>{{film.duree}}</td>
+        <td><a href="index.php?action=edit_film&id={{ film.code_film }}">M</a><a href="index.php?action=delete_film&id={{ film.code_film }}">X</a> </td>
+    </tr>
+    {% endfor %}
 
 </table>
 
 <div id="message">
-  {% if est_ajoute %} <p> Supprimé avec succès </p> {% endif %}
-  {% if est_modifie %} <p> Modifié avec succès </p> {% endif %}
-  {% if est_efface %} <p> Effacé avec succès </p> {% endif %}
+    {% if est_ajoute %} <p> Supprimé avec succès </p> {% endif %}
+    {% if est_modifie %} <p> Modifié avec succès </p> {% endif %}
+    {% if est_efface %} <p> Effacé avec succès </p> {% endif %}
 </div>
 {% endblock %}
 
 {% block javascript%}
 
 function changefilm(name){
-  console.log(name.value);
-  cacher_film(name.value);
-  document.getElementById('cachezClick_lettre').style.display = 'none';
+console.log(name.value);
+cacher_film(name.value);
+document.getElementById('cachezClick_lettre').style.display = 'none';
 }
 
 function cacher_film(name){
-  var chaineCarac="^["+name+"]";
-  console.log(chaineCarac);
-  regfilm = new RegExp(chaineCarac);
+var chaineCarac="^["+name+"]";
+console.log(chaineCarac);
+regfilm = new RegExp(chaineCarac);
 
-  {% for film in films%}
+{% for film in films%}
 
-  var codefilm = document.getElementById('{{film.code_film}}');
+var codefilm = document.getElementById('{{film.code_film}}');
 
-    if (!regfilm.test('{{film.titre_original}}'))
-    {
-      codefilm.style.display="none";
-    }
-    else
-    {
-      codefilm.style.display="block";
-    }
-    {% endfor %}
-  }
+if (!regfilm.test('{{film.titre_original}}'))
+{
+codefilm.style.display="none";
+}
+else
+{
+codefilm.style.display="block";
+}
+{% endfor %}
+}
 
 {% endblock %}

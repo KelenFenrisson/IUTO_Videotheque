@@ -2,38 +2,39 @@
 {% block title %}Base de données des Individus {% endblock %}
 {% block head %}
 {{parent()}}
-<link rel="stylesheet" href="../static/tabstyle.css"/>
 {% endblock %}
 
 {% block content %}
 
 <h2>{{titre}}</h2>
 <table>
-  <tr>
-    <td>Nom </td>
-    <td>Prénom </td>
-      <td>Nationalité</td>
-      <td>Date de naissance</td>
-      <td>Date de décès</td>
-      <td><a href="index.php?action=add_people">+</a></td>
-  </tr>
-  {% for people in peoples %}
+    <tr>
+        <td>Nom </td>
+        <td>Prénom </td>
 
-  <tr>
-    <td>{{people.nom}}</td>
-    <td>{{people.prenom}}</td>
-    <td>{{people.nationalite}}</td>
-    <td>{{people.date_naiss}}</td>
-    <td>{{people.date_mort}}</td>
-  </tr>
+        <td>Nationalité</td>
+        <td>Date de naissance</td>
+        <td>Date de décès</td>
+        <td><a href="index.php?action=add_people">+</a></td>
+    </tr>
+    {% for people in peoples %}
 
-  {% endfor %}
+    <tr>
+        <td><a href="index.php?action=film_by_people&id={{people.code_indiv}}"> {{people.nom}} </a></td>
+        <td>{{people.prenom}}</td>
+        <td>{{people.nationalite}}</td>
+        <td>{{people.date_naiss}}</td>
+        <td>{{people.date_mort}}</td>
+        <td><a href="index.php?action=edit_people&id={{ people.code_indiv }}">M</a><a href="index.php?action=delete_people&id={{ people.code_indiv }}">X</a> </td>
+    </tr>
+
+    {% endfor %}
 
 
 </table>
 <div id="message">
-  {% if est_ajoute %} <p> Supprimé avec succès </p> {% endif %}
-  {% if est_modifie %} <p> Modifié avec succès </p> {% endif %}
-  {% if est_efface %} <p> Effacé avec succès </p> {% endif %}
+    {% if est_ajoute %} <p> Supprimé avec succès </p> {% endif %}
+    {% if est_modifie %} <p> Modifié avec succès </p> {% endif %}
+    {% if est_efface %} <p> Effacé avec succès </p> {% endif %}
 </div>
 {% endblock %}
