@@ -4,9 +4,46 @@
 {{parent()}}
 {% endblock %}
 
+
+{%block titleBody %}
+{{titre}}
+{% endblock %}
+
 {% block content %}
 
-<h2>{{titre}}</h2>
+<div>
+    <label for=lettre_film>Film :</label>
+    <select name="lettre_film" id="lettre_film" size="1" onchange="changereal(this)">
+        <option id="cachezClick_lettre" selected="selected">Choisis une lettre</option>
+        <option>A</option>
+        <option>B</option>
+        <option>C</option>
+        <option>D</option>
+        <option>E</option>
+        <option>F</option>
+        <option>G</option>
+        <option>H</option>
+        <option>I</option>
+        <option>J</option>
+        <option>K</option>
+        <option>L</option>
+        <option>M</option>
+        <option>N</option>
+        <option>O</option>
+        <option>P</option>
+        <option>Q</option>
+        <option>R</option>
+        <option>S</option>
+        <option>T</option>
+        <option>U</option>
+        <option>V</option>
+        <option>W</option>
+        <option>X</option>
+        <option>Y</option>
+        <option>Z</option>
+    </select>
+</div>
+
 <table>
     <tr>
         <td>Nom </td>
@@ -23,7 +60,7 @@
     </tr>
     {% for real in realisateurs %}
 
-    <tr>
+    <tr id="{{real.code_indiv}}">
         <td>{{real.nom}}</td>
         <td>{{real.prenom}}</td>
         <td>{{real.nationalite}}</td>
@@ -41,9 +78,39 @@
 
 
 </table>
-<div id="message">
-    {% if est_ajoute %} <p> Supprimé avec succès </p> {% endif %}
-    {% if est_modifie %} <p> Modifié avec succès </p> {% endif %}
-    {% if est_efface %} <p> Effacé avec succès </p> {% endif %}
-</div>
+
+{% endblock %}
+
+{% block javascript%}
+
+<!-- fonction permet de cacher les films + faire disparaitre choisir une lettre de la liste deroulante -->
+function changereal(name)
+{
+  console.log(name.value);
+  cacher_real(name.value);
+  document.getElementById('cachezClick_lettre').style.display = 'none';
+}
+
+<!--  permet de modifier le pattern pour afficher/cacher les films-->
+function cacher_real(name)
+{
+  var chaineCarac="^["+name+"]";
+  console.log(chaineCarac);
+  regreal = new RegExp(chaineCarac);
+
+  {% for real in realisateurs%}
+
+  var codereal = document.getElementById('{{real.code_indiv}}');
+
+  if (!regreal.test('{{real.nom}}'))
+  {
+    codereal.style.visibility="collapse";
+  }
+  else
+  {
+    codereal.style.visibility="visible";
+  }
+  {% endfor %}
+}
+
 {% endblock %}

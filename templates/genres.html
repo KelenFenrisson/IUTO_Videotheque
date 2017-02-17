@@ -5,9 +5,45 @@
 <link rel="stylesheet" href="../static/tabstyle.css"/>
 {% endblock %}
 
-{% block content %}
+{%block titleBody %}
+{{titre}}
+{% endblock %}
 
-<h2>{{titre}}</h2>
+{% block FormulaireAjoutModif %}
+<fieldset id="ajout_modif_genre">
+<form action="index.php" method="GET"  name="formu_inserer">
+<input type="hidden" id="action" name="action" value="add_film">
+<input type="hidden" id="code_genre" name="code_genre">
+<label  for="nom_genre"> Genre :</label>
+<input type="text" name="nom_genre"  id="nom_genre" size="20" title="Entre ici le genre" placeholder="Genre" required  />
+<input type="submit" id="boutonModif" value="Ajouter un genre">
+</form>
+</fieldset>
+{% endblock %}
+
+{% block content %}
+<div>
+    <label for=lettre_genre>Genre :</label>
+    <select name="lettre_genre" id="lettre_genre" size="1" onchange="changeGenre(this)">
+        <option id="cachezClick_lettre" selected="selected">Choisis une lettre</option>
+        <option>à</option>
+        <option>B</option>
+        <option>c</option>
+        <option>d</option>
+        <option>e</option>
+        <option>é</option>
+        <option>h</option>
+        <option>j</option>
+        <option>l</option>
+        <option>L</option>
+        <option>N</option>
+        <option>P</option>
+        <option>M</option>
+        <option>p</option>
+        <option>v</option>
+    </select>
+</div>
+
 
 <table>
     <tr>
@@ -15,22 +51,97 @@
         <td>Films</td>
         <td>Réalisateurs</td>
         <td>Acteurs</td>
-        <td><a href="index.php?action=add_genre">+</a></td>
+        <td><a href="#" onclick="ajouter()">+</a></td>
     </tr>
     {% for genre in genres %}
-    <tr>
-        <td>{{genre.nom_genre}}</td>
+    <tr id="{{genre.code_genre}}">
+        <td><a href='#' onclick='info("{{ genre.code_genre }}","{{ genre.nom_genre }}")'>{{genre.nom_genre}}</a></td>
         <td><a href="index.php?action=film_by_genre&id={{ genre.code_genre }}">¤</a></td>
         <td><a href="index.php?action=director_by_genre&id={{ genre.code_genre }}">*</a></td>
         <td><a href="index.php?action=actor_by_genre&id={{ genre.code_genre }}">$</a></td>
-        <td><a href="index.php?action=edit_genre&id={{ genre.code_genre }}">M</a><a href="index.php?action=delete_genre&id={{ genre.code_genre }}">X</a> </td>
+        <td><a href="#" onclick='modification("{{ genre.code_genre }}","{{ genre.nom_genre }}")'>M</a> <a href="index.php?action=delete_genre&id={{ genre.code_genre }}">X</a> </td>
     </tr>
     {% endfor %}
 </table>
 
-<div id="message">
-    {% if est_ajoute %} <p> Supprimé avec succès </p> {% endif %}
-    {% if est_modifie %} <p> Modifié avec succès </p> {% endif %}
-    {% if est_efface %} <p> Effacé avec succès </p> {% endif %}
-</div>
+{% endblock %}
+
+{% block information %}
+  <table>
+    <tr>
+      <td>Code genre</td>
+      <td>Nom genre</td>
+    </tr>
+    <tr>
+      <td id="Code">code_genre</td>
+      <td id="Nom">nom_genre</td>
+    </tr>
+</table>
+{% endblock %}
+
+{% block javascript%}
+
+<!-- cachez Tableau informations film/Formulaire ajout /Formulaire Modifier -->
+var sectionInfo = document.getElementById('info');
+sectionInfo.style.visibility="collapse";
+var formulaireAjoutModif = document.getElementById('formulaireAjoutModif');
+formulaireAjoutModif.style.display="none";
+
+<!--  Fonction qui fait apparaitre le formulaire ajouter film-->
+function ajouter(){
+  formulaireAjoutModif.style.display="block";
+}
+
+<!--  Fonction qui fait apparaitre le formulaire modification film-->
+function modification(code,nom){
+  formulaireAjoutModif.style.display="block";
+  console.log(code);
+  console.log(nom);
+
+  document.getElementById('action').value = "update_genre";
+  document.getElementById('code_genre').value = code;
+  document.getElementById('nom_genre').value = nom;
+  document.getElementById('boutonModif').value = "Modifier le genre";
+}
+
+<!--  Fais apparaitre les infos du film dans un tableau-->
+function info(code,nom)
+{
+  sectionInfo.style.visibility="visible";
+
+  document.getElementById('Code').innerHTML = code;
+  document.getElementById('Nom').innerHTML = nom;
+}
+
+<!-- fonction permet de cacher les films + faire disparaitre choisir une lettre de la liste deroulante -->
+function changeGenre(name)
+{
+  console.log(name.value);
+  cacher_Genre(name.value);
+  document.getElementById('cachezClick_lettre').style.display = 'none';
+}
+
+<!--  permet de modifier le pattern pour afficher/cacher les films-->
+function cacher_Genre(name)
+{
+  var chaineCarac="^["+name+"]";
+  console.log(chaineCarac);
+  reggenre = new RegExp(chaineCarac);
+
+  {% for genre in genres%}
+
+  var codegenre = document.getElementById('{{genre.code_genre}}');
+
+  if (!reggenre.test('{{genre.nom_genre}}'))
+  {
+    codegenre.style.visibility="collapse";
+  }
+  else
+  {
+    codegenre.style.visibility="visible";
+  }
+  {% endfor %}
+}
+
+
 {% endblock %}

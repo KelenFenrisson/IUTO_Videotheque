@@ -5,9 +5,46 @@
 <link rel="stylesheet" href="../static/tabstyle.css"/>
 {% endblock %}
 
+
+{%block titleBody %}
+{{titre}}
+{% endblock %}
+
 {% block content %}
 
-<h2>{{titre}}</h2>
+<div>
+    <label for=lettre_film>Film :</label>
+    <select name="lettre_film" id="lettre_film" size="1" onchange="changeacteur(this)">
+        <option id="cachezClick_lettre" selected="selected">Choisis une lettre</option>
+        <option>A</option>
+        <option>B</option>
+        <option>C</option>
+        <option>D</option>
+        <option>E</option>
+        <option>F</option>
+        <option>G</option>
+        <option>H</option>
+        <option>I</option>
+        <option>J</option>
+        <option>K</option>
+        <option>L</option>
+        <option>M</option>
+        <option>N</option>
+        <option>O</option>
+        <option>P</option>
+        <option>Q</option>
+        <option>R</option>
+        <option>S</option>
+        <option>T</option>
+        <option>U</option>
+        <option>V</option>
+        <option>W</option>
+        <option>X</option>
+        <option>Y</option>
+        <option>Z</option>
+    </select>
+</div>
+
 <table>
     <tr>
         <td>Nom </td>
@@ -24,7 +61,7 @@
     </tr>
     {% for acteur in acteurs %}
 
-    <tr>
+    <tr id="{{acteur.code_indiv}}">
         <td>{{acteur.nom}}</td>
         <td>{{acteur.prenom}}</td>
         <td>{{acteur.nationalite}}</td>
@@ -42,9 +79,39 @@
 
 
 </table>
-<div id="message">
-    {% if est_ajoute %} <p> Supprimé avec succès </p> {% endif %}
-    {% if est_modifie %} <p> Modifié avec succès </p> {% endif %}
-    {% if est_efface %} <p> Effacé avec succès </p> {% endif %}
-</div>
+
+{% endblock %}
+
+{% block javascript%}
+
+<!-- fonction permet de cacher les films + faire disparaitre choisir une lettre de la liste deroulante -->
+function changeacteur(name)
+{
+  console.log(name.value);
+  cacher_acteur(name.value);
+  document.getElementById('cachezClick_lettre').style.display = 'none';
+}
+
+<!--  permet de modifier le pattern pour afficher/cacher les films-->
+function cacher_acteur(name)
+{
+  var chaineCarac="^["+name+"]";
+  console.log(chaineCarac);
+  regacteur = new RegExp(chaineCarac);
+
+  {% for acteur in acteurs%}
+
+  var codeacteur = document.getElementById('{{acteur.code_indiv}}');
+
+  if (!regacteur.test('{{acteur.nom}}'))
+  {
+    codeacteur.style.visibility="collapse";
+  }
+  else
+  {
+    codeacteur.style.visibility="visible";
+  }
+  {% endfor %}
+}
+
 {% endblock %}

@@ -16,6 +16,7 @@ try {
     echo $template->render(array(
       'titre'=>$titre,
       'acteurs'=> $acteurs,
+        'message'=>$msg
     ));
   }catch (Exception $e){
     die('ERROR: '.$e->getMessage());
