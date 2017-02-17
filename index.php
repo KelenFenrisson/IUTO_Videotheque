@@ -10,6 +10,7 @@ $filters = array(
 
     // champ action : On veut un <string> qui ne soit que des lettres ou un _
     'action' => FILTER_SANITIZE_STRING ,
+
     // champ id : On veut un <int>, et seulement un <int>
     'id'   => FILTER_SANITIZE_NUMBER_INT,
     'code_film'   =>  FILTER_SANITIZE_NUMBER_INT,
