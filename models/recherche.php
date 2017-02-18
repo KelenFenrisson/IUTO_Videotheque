@@ -271,9 +271,9 @@ class Recherche{
 
 //ajout d'un genre
     function ajout_genre($genre){
-        $sql = " INSERT INTO genres(code_genre,nom_genre) VALUES (?,?)";
+        $sql = " INSERT INTO genres(nom_genre) VALUES (?)";
         $stmt = $this->connexion->prepare($sql);
-        return $stmt->execute(array($genre['code_genre'],$genre['nom_genre']));
+        return $stmt->execute(array($genre['nom_genre']));
     }
 
 
