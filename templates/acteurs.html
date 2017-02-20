@@ -10,6 +10,14 @@
 {{titre}}
 {% endblock %}
 
+
+<!--  Pour le formulaire-->
+<!-- <select  name="code_film" id="code_film" size="1" required>
+  {% for film in films%}
+  <option value="film.code_film">{{film.titre_original}}</option>
+  {% endfor %}
+</select> -->
+
 {% block content %}
 
 <div>
@@ -67,9 +75,9 @@
         <td>{{acteur.nationalite}}</td>
         <td>{{acteur.date_naiss}}</td>
         <td>{{acteur.date_mort}}</td>
-        <td><a href="index.php?action=film_by_actor&id={{acteur.code_indiv}}"> ¤</a></td>
-        <td><a href="index.php?action=director_by_actor&id={{acteur.code_indiv}}">*</a></td>
-        <td><a href="index.php?action=genre_by_actor&id={{acteur.code_indiv}}">$</a></td>
+        <td><a href="index.php?action=film_by_actor&eid={{acteur.code_indiv}}"> ¤</a></td>
+        <td><a href="index.php?action=director_by_actor&eid={{acteur.code_indiv}}">*</a></td>
+        <td><a href="index.php?action=genre_by_actor&eid={{acteur.code_indiv}}">$</a></td>
         <td>+</td>
         <td>~</td>
         <td>-</td>
@@ -79,6 +87,40 @@
 
 
 </table>
+
+{% endblock %}
+
+{% block javascript%}
+
+<!-- fonction permet de cacher les films + faire disparaitre choisir une lettre de la liste deroulante -->
+function changeacteur(name)
+{
+  console.log(name.value);
+  cacher_acteur(name.value);
+  document.getElementById('cachezClick_lettre').style.display = 'none';
+}
+
+<!--  permet de modifier le pattern pour afficher/cacher les films-->
+function cacher_acteur(name)
+{
+  var chaineCarac="^["+name+"]";
+  console.log(chaineCarac);
+  regacteur = new RegExp(chaineCarac);
+
+  {% for acteur in acteurs%}
+
+  var codeacteur = document.getElementById('{{acteur.code_indiv}}');
+
+  if (!regacteur.test('{{acteur.nom}}'))
+  {
+    codeacteur.style.visibility="collapse";
+  }
+  else
+  {
+    codeacteur.style.visibility="visible";
+  }
+  {% endfor %}
+}
 
 {% endblock %}
 

@@ -246,9 +246,9 @@ class Recherche{
 
 //ajout d'un individu
     function ajout_individu($individu){
-        $sql = " INSERT INTO individus(code_indiv,nom,prenom,nationalite,date_naiss,date_mort) VALUES (?,?,?,?,?,?)";
+        $sql = " INSERT INTO individus(nom,prenom,nationalite,date_naiss,date_mort) VALUES (?,?,?,?,?)";
         $stmt = $this->connexion->prepare($sql);
-        return $stmt->execute(array($individu['code_indiv'],$individu['nom'],$individu['prenom'],$individu['nationalite'],$individu['date_naiss'],$individu['date_mort']));
+        return $stmt->execute(array($individu['nom'],$individu['prenom'],$individu['nationalite'],$individu['date_naiss'],$individu['date_mort']));
     }
 
 //ajout d'un acteur
@@ -323,7 +323,7 @@ class Recherche{
     function modif_individu($individu){
         $sql = "UPDATE individus SET nom=?,prenom=?,nationalite=?,date_naiss=?,date_mort=? where code_indiv=?";
         $stmt=$this->connexion->prepare($sql);
-        return $stmt->execute(array($individu['nom'],$individu['prenom'],$individu['nationalite'],$individu['date_naiss'],$individu['date_mort']));
+        return $stmt->execute(array($individu['nom'],$individu['prenom'],$individu['nationalite'],$individu['date_naiss'],$individu['date_mort'],$individu['code_indiv']));
     }
 
 //modification d'un genre (avec $genre toutes les valeurs)

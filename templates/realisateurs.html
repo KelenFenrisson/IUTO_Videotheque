@@ -66,9 +66,9 @@
         <td>{{real.nationalite}}</td>
         <td>{{real.date_naiss}}</td>
         <td>{{real.date_mort}}</td>
-        <td><a href="index.php?action=film_by_director&id={{real.code_indiv}}"> ¤</a></td>
-        <td><a href="index.php?action=actor_by_director&id={{real.code_indiv}}">*</a></td>
-        <td><a href="index.php?action=genre_by_director&id={{real.code_indiv}}">$</a></td>
+        <td><a href="index.php?action=film_by_director&eid={{real.code_indiv}}"> ¤</a></td>
+        <td><a href="index.php?action=actor_by_director&eid={{real.code_indiv}}">*</a></td>
+        <td><a href="index.php?action=genre_by_director&eid={{real.code_indiv}}">$</a></td>
         <td>+</td>
         <td>~</td>
         <td>-</td>
@@ -78,6 +78,40 @@
 
 
 </table>
+
+{% endblock %}
+
+{% block javascript%}
+
+<!-- fonction permet de cacher les films + faire disparaitre choisir une lettre de la liste deroulante -->
+function changereal(name)
+{
+  console.log(name.value);
+  cacher_real(name.value);
+  document.getElementById('cachezClick_lettre').style.display = 'none';
+}
+
+<!--  permet de modifier le pattern pour afficher/cacher les films-->
+function cacher_real(name)
+{
+  var chaineCarac="^["+name+"]";
+  console.log(chaineCarac);
+  regreal = new RegExp(chaineCarac);
+
+  {% for real in realisateurs%}
+
+  var codereal = document.getElementById('{{real.code_indiv}}');
+
+  if (!regreal.test('{{real.nom}}'))
+  {
+    codereal.style.visibility="collapse";
+  }
+  else
+  {
+    codereal.style.visibility="visible";
+  }
+  {% endfor %}
+}
 
 {% endblock %}
 
