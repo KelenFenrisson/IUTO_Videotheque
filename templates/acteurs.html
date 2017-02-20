@@ -11,12 +11,26 @@
 {% endblock %}
 
 
-<!--  Pour le formulaire-->
-<!-- <select  name="code_film" id="code_film" size="1" required>
-  {% for film in films%}
-  <option value="film.code_film">{{film.titre_original}}</option>
-  {% endfor %}
-</select> -->
+{%block FormulaireAjoutModif %}
+<fieldset id="ajout_modif_film">
+<form action="index.php" method="GET"  name="formu_inserer">
+
+<input type="hidden" id="action" name="action" value="add_actor">
+
+<input type="hidden" id="code_indiv" name="code_indiv">
+
+<label  for="film_id">Films :</label>
+<select  name="film_id" id="film_id" size="1" required>
+ {% for film in films%}
+ <option value="{{film.code_film}}">{{film.titre_original}}</option>
+ {% endfor %}
+</select>
+
+<input type="submit" id="boutonModif" value="Ajouter un acteur pour le film">
+</form>
+</fieldset>
+{% endblock %}
+
 
 {% block content %}
 
@@ -78,7 +92,7 @@
         <td><a href="index.php?action=film_by_actor&eid={{acteur.code_indiv}}"> ¤</a></td>
         <td><a href="index.php?action=director_by_actor&eid={{acteur.code_indiv}}">*</a></td>
         <td><a href="index.php?action=genre_by_actor&eid={{acteur.code_indiv}}">$</a></td>
-        <td>+</td>
+        <td><a href="#" onclick="ajouter('{{acteur.code_indiv}}')">+</a></td>
         <td>~</td>
         <td>-</td>
     </tr>
@@ -92,39 +106,15 @@
 
 {% block javascript%}
 
-<!-- fonction permet de cacher les films + faire disparaitre choisir une lettre de la liste deroulante -->
-function changeacteur(name)
-{
-  console.log(name.value);
-  cacher_acteur(name.value);
-  document.getElementById('cachezClick_lettre').style.display = 'none';
+<!-- cachez Formulaire ajout  -->
+var formulaireAjoutModif = document.getElementById('formulaireAjoutModif');
+formulaireAjoutModif.style.visibility="collapse";
+
+<!--  Fonction qui fait apparaitre le formulaire ajouter film-->
+function ajouter(codeIndividus){
+  formulaireAjoutModif.style.visibility="visible";
+  document.getElementById('code_indiv').value = codeIndividus;
 }
-
-<!--  permet de modifier le pattern pour afficher/cacher les films-->
-function cacher_acteur(name)
-{
-  var chaineCarac="^["+name+"]";
-  console.log(chaineCarac);
-  regacteur = new RegExp(chaineCarac);
-
-  {% for acteur in acteurs%}
-
-  var codeacteur = document.getElementById('{{acteur.code_indiv}}');
-
-  if (!regacteur.test('{{acteur.nom}}'))
-  {
-    codeacteur.style.visibility="collapse";
-  }
-  else
-  {
-    codeacteur.style.visibility="visible";
-  }
-  {% endfor %}
-}
-
-{% endblock %}
-
-{% block javascript%}
 
 <!-- fonction permet de cacher les films + faire disparaitre choisir une lettre de la liste deroulante -->
 function changeacteur(name)
