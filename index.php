@@ -12,7 +12,7 @@ $filters = array(
     'action' => FILTER_SANITIZE_STRING ,
 
     // champ id : On veut un <int>, et seulement un <int>
-    'id'   => FILTER_SANITIZE_NUMBER_INT,
+    'eid'   => FILTER_SANITIZE_NUMBER_INT,
     'code_film'   =>  FILTER_SANITIZE_NUMBER_INT,
     'code_indiv'   => FILTER_SANITIZE_NUMBER_INT,
     'code_genre'   =>  FILTER_SANITIZE_NUMBER_INT,
@@ -77,15 +77,15 @@ switch ($action) {
         break;
 
     case "film_by_actor":
-        film_by_actor_action($filtered['id']);
+        film_by_actor_action($filtered['eid']);
         break;
 
     case "film_by_genre":
-        film_by_genre_action($filtered['id']);
+        film_by_genre_action($filtered['eid']);
         break;
 
     case "film_by_director":
-        film_by_director_action($filtered['id']);
+        film_by_director_action($filtered['eid']);
         break;
 
     //// ACTEUR
@@ -95,15 +95,15 @@ switch ($action) {
         break;
 
     case "actor_by_genre":
-        actor_by_genre_action($filtered['id']);
+        actor_by_genre_action($filtered['eid']);
         break;
 
     case "actor_by_film":
-        actor_by_film_action($filtered['id']);
+        actor_by_film_action($filtered['eid']);
         break;
 
     case "actor_by_director":
-        actor_by_director_action($filtered['id']);
+        actor_by_director_action($filtered['eid']);
         break;
 
     //// GENRE
@@ -113,15 +113,15 @@ switch ($action) {
         break;
 
     case "genre_by_film":
-        genre_by_film_action($filtered['id']);
+        genre_by_film_action($filtered['eid']);
         break;
 
     case "genre_by_actor":
-        genre_by_actor_action($filtered['id']);
+        genre_by_actor_action($filtered['eid']);
         break;
 
     case "genre_by_director":
-        genre_by_director_action($filtered['id']);
+        genre_by_director_action($filtered['eid']);
         break;
 
     //// REALISATEUR
@@ -131,15 +131,15 @@ switch ($action) {
         break;
 
     case "director_by_film":
-        director_by_film_action($filtered['id']);
+        director_by_film_action($filtered['eid']);
         break;
 
     case "director_by_actor":
-        director_by_actor_action($filtered['id']);
+        director_by_actor_action($filtered['eid']);
         break;
 
     case "director_by_genre":
-        director_by_genre_action($filtered['id']);
+        director_by_genre_action($filtered['eid']);
         break;
 
     //// PERSONNES
@@ -193,19 +193,19 @@ switch ($action) {
 /////////////////////////////////////////////////   SUPPRESSION   //////////////////////////////////////////////////////
 
     case "delete_film":
-        delete_film_action($filtered['id']);
+        delete_film_action($filtered['eid']);
         break;
 
     case "delete_people":
-        delete_people_action($filtered['id']);
+        delete_people_action($filtered['eid']);
         break;
 
     case "delete_actor":
-        delete_actor_action($filtered['id'], $filtered['film_id']);
+        delete_actor_action($filtered['eid'], $filtered['film_id']);
         break;
 
     case "delete_genre":
-        delete_genre_action($filtered['id']);
+        delete_genre_action($filtered['eid']);
         break;
 
     case "delete_director":
