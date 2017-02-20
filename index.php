@@ -201,7 +201,7 @@ switch ($action) {
         break;
 
     case "delete_actor":
-        delete_actor_action($filtered['eid'], $filtered['code_film']);
+        delete_actor_action($filtered['code_indiv'], $filtered['code_film']);
         break;
 
     case "delete_genre":
