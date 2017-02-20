@@ -209,7 +209,7 @@ switch ($action) {
         break;
 
     case "delete_director":
-        delete_director_action($filtered, $filtered['code_film']);
+        delete_director_action($filtered['code_indiv'], $filtered['code_film']);
         break;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
