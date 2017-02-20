@@ -9,6 +9,28 @@
 {{titre}}
 {% endblock %}
 
+{%block FormulaireAjoutModif %}
+<fieldset id="ajout_modif_film">
+<form action="index.php" method="GET"  name="formu_inserer">
+
+<input type="hidden" id="action" name="action" value="add_director">
+
+<input type="hidden" id="code_indiv" name="code_indiv">
+
+<input type="text" disabled id="nomIndiv" name="nomIndiv">
+
+<label  for="code_film">Films :</label>
+<select  name="code_film" id="code_film" size="1" required>
+ {% for film in films%}
+ <option value="{{film.code_film}}">{{film.titre_original}}</option>
+ {% endfor %}
+</select>
+
+<input type="submit" id="boutonModif" value="Ajouter un réalisateur pour le film">
+</form>
+</fieldset>
+{% endblock %}
+
 {% block content %}
 
 <div>
@@ -69,7 +91,7 @@
         <td><a href="index.php?action=film_by_director&eid={{real.code_indiv}}"> ¤</a></td>
         <td><a href="index.php?action=actor_by_director&eid={{real.code_indiv}}">*</a></td>
         <td><a href="index.php?action=genre_by_director&eid={{real.code_indiv}}">$</a></td>
-        <td>+</td>
+        <td><a href="#" onclick="ajouter('{{real.code_indiv}}','{{real.nom}}')">+</a></td>
         <td>~</td>
         <td>-</td>
     </tr>
@@ -82,6 +104,17 @@
 {% endblock %}
 
 {% block javascript%}
+
+<!-- cachez Formulaire ajout  -->
+var formulaireAjoutModif = document.getElementById('formulaireAjoutModif');
+formulaireAjoutModif.style.visibility="collapse";
+
+<!--  Fonction qui fait apparaitre le formulaire ajouter film-->
+function ajouter(codeIndividus,nomIndividus){
+  formulaireAjoutModif.style.visibility="visible";
+  document.getElementById('code_indiv').value = codeIndividus;
+  document.getElementById('nomIndiv').value = nomIndividus;
+}
 
 <!-- fonction permet de cacher les films + faire disparaitre choisir une lettre de la liste deroulante -->
 function changereal(name)

@@ -9,13 +9,14 @@ try {
     //initialiser l'environement Twig_loader_filesystem
     $twig = new Twig_Environment($loader);
 
-    
+
     //charger le template
     $template = $twig->loadTemplate('realisateurs.html');
     $titre = "Liste des Realisateurs ";
     echo $template->render(array(
       'titre'=>$titre,
       'realisateurs'=> $realisateurs,
+      'films'=> $films,
         'message'=>$msg
     ));
   }catch (Exception $e){

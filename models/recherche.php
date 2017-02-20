@@ -253,7 +253,7 @@ class Recherche{
 
 //ajout d'un acteur
     function ajout_acteur($individu, $film_id){
-        $sql = " INSERT INTO acteurs VALUES (?,?);";
+        $sql = " INSERT INTO acteurs VALUES (?,?)";
         $stmt = $this->connexion->prepare($sql);
         $req = $stmt->execute(array($film_id,$individu['code_indiv']));// valeur booleenne
         return $req;
@@ -261,11 +261,10 @@ class Recherche{
 
 //ajout d'un realisateur
     function ajout_realisateur($individu, $film_id){
-        $req1=$this->ajout_individu($individu); // valeur booleenne
-        $sql = " INSERT INTO realisateurs VALUES (?,?);";
+        $sql = " INSERT INTO realisateurs VALUES (?,?)";
         $stmt = $this->connexion->prepare($sql);
-        $req2=$stmt->execute(array($individu['code_indiv'], $film_id));// valeur booleenne
-        return ($req1 and $req2);
+        $req = $stmt->execute(array($film_id,$individu['code_indiv']));// valeur booleenne
+        return $req;
     }
 
 //ajout d'un genre

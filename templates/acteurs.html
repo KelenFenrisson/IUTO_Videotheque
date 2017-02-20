@@ -12,23 +12,37 @@
 
 
 {%block FormulaireAjoutModif %}
-<fieldset id="ajout_modif_film">
+<fieldset >
 <form action="index.php" method="GET"  name="formu_inserer">
-
 <input type="hidden" id="action" name="action" value="add_actor">
-
 <input type="hidden" id="code_indiv" name="code_indiv">
 
-<label  for="film_id">Films :</label>
-<select  name="film_id" id="film_id" size="1" required>
- {% for film in films%}
- <option value="{{film.code_film}}">{{film.titre_original}}</option>
- {% endfor %}
-</select>
+<div id="ajouter_acteur_dans_film">
+  <input type="text" disabled id="nomIndiv" name="nomIndiv">
+  <select name="code_film" id="code_film" size="1" required>
+   {% for film in films%}
+   <option value="{{film.code_film}}">{{film.titre_original}}</option>
+   {% endfor %}
+  </select>
+</div>
 
-<input type="submit" id="boutonModif" value="Ajouter un acteur pour le film">
+<div id="modif_Acteur">
+  <label  for="nom">Nom :</label>
+  <input type="text" name="nom"  id="nom" size="20" title="Entre ici le nom" placeholder="Nom" required  />
+  <label  for="prenom">Prénom:</label>
+  <input type="text" name="prenom"  id="prenom" size="20" title="Entre ici le prénom" placeholder="Prénom" required  />
+  <label  for="nationalite">Nationalité:</label>
+  <input type="text" name="nationalite"  id="nationalite" size="15" title="Entre ici le pays" placeholder="Nationalite" required  />
+  <label  for="date_naiss">Date de naissance:</label>
+  <input type="text" name="date_naiss"  id="date_naiss" size="4" title="Entre ici la date de naissance " placeholder="Date" required  />
+  <label  for="date_mort">Date de décès:</label>
+  <input type="text" name="date_mort"  id="date_mort" size="4" title="Entre ici la date de décès" placeholder="Date" required  />
+</div>
+
+<input type="submit" id="boutonModif" value="ajouter un acteur à un film">
 </form>
 </fieldset>
+
 {% endblock %}
 
 
@@ -92,9 +106,9 @@
         <td><a href="index.php?action=film_by_actor&eid={{acteur.code_indiv}}"> ¤</a></td>
         <td><a href="index.php?action=director_by_actor&eid={{acteur.code_indiv}}">*</a></td>
         <td><a href="index.php?action=genre_by_actor&eid={{acteur.code_indiv}}">$</a></td>
-        <td><a href="#" onclick="ajouter('{{acteur.code_indiv}}')">+</a></td>
-        <td>~</td>
-        <td>-</td>
+        <td><a href="#" onclick="ajouter('{{acteur.code_indiv}}','{{acteur.nom}}')">+</a></td>
+        <td><a href="#"onclick='modification("{{acteur.code_indiv}}","{{acteur.nom}}","{{acteur.prenom}}","{{acteur.nationalite}}","{{acteur.date_naiss}}","{{acteur.date_mort}}")'>~</a></td>
+        <td><a href="#" onclick="supprimer('{{acteur.code_indiv}}','{{acteur.nom}}')">-</a></td>
     </tr>
 
     {% endfor %}
@@ -106,14 +120,42 @@
 
 {% block javascript%}
 
-<!-- cachez Formulaire ajout  -->
+<!-- cacher Formulaire ajout d'un acteur dans un film et cacher modif d'un acteur-->
 var formulaireAjoutModif = document.getElementById('formulaireAjoutModif');
-formulaireAjoutModif.style.visibility="collapse";
+formulaireAjoutModif.style.display="none";
 
 <!--  Fonction qui fait apparaitre le formulaire ajouter film-->
-function ajouter(codeIndividus){
-  formulaireAjoutModif.style.visibility="visible";
+function ajouter(codeIndividus,nomIndividus){
+  formulaireAjoutModif.style.display="block";
+  var formu1 = document.getElementById('ajouter_acteur_dans_film');
+  var formu2 = document.getElementById('modif_Acteur');
+
+  formu1.style.display = "block";
+  formu2.style.display = "none";
+
   document.getElementById('code_indiv').value = codeIndividus;
+  document.getElementById('nomIndiv').value = nomIndividus;
+  document.getElementById('boutonModif').value = "Ajouter un acteur à un film";
+}
+
+<!--  Fonction qui fait apparaitre le formulaire modification acteur-->
+function modification(code,Nom,Prenom,natio,naiss,mort){
+  formulaireAjoutModif.style.display="block";
+  var formu1 = document.getElementById('ajouter_acteur_dans_film');
+  var formu2 = document.getElementById('modif_Acteur');
+
+  formu1.style.display = "none";
+  formu2.style.display = "block";
+
+  document.getElementById('action').value = "update_people";
+  document.getElementById('code_indiv').value = code;
+  document.getElementById('nom').value = Nom;
+  document.getElementById('prenom').value = Prenom;
+  document.getElementById('nationalite').value = natio;
+  document.getElementById('date_naiss').value = naiss;
+  document.getElementById('date_mort').value = mort;
+  document.getElementById('boutonModif').value = "Modifier l'individu";
+
 }
 
 <!-- fonction permet de cacher les films + faire disparaitre choisir une lettre de la liste deroulante -->
