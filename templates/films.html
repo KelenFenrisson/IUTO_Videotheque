@@ -38,7 +38,7 @@
 {% endblock %}
 
 {% block content %}
-<div>
+<div id="film_content">
     <label for=lettre_film>Film :</label>
     <select name="lettre_film" id="lettre_film" size="1" onchange="changefilm(this)">
         <option id="cachezClick_lettre" selected="selected">Choisis une lettre</option>
@@ -73,7 +73,7 @@
 </div>
 
 <table>
-    <tr>
+    <tr class="gras">
         <td>Titre Film </td>
         <td> Date </td>
         <td> Durée </td>
@@ -81,7 +81,7 @@
     </tr>
     {% for film in films %}
     <tr id="{{film.code_film}}">
-        <td class="alignerGauche"><a href="#" onclick='info("{{film.titre_original}}","{{film.titre_francais}}","{{film.pays}}","{{film.date}}","{{film.duree}}","{{film.couleur}}")'> {{film.titre_original}} </a></td>
+        <td class="alignerGauche"><a href="#" onclick='info("{{film.titre_original}}","{{film.titre_francais}}","{{film.pays}}","{{film.date}}","{{film.duree}}","{{film.couleur}}","{{film.image}}")'> {{film.titre_original}} </a></td>
         <td>{{film.date}}</td>
         <td>{{film.duree}}</td>
         <td><a href="#"  onclick='modification("{{film.code_film}}","{{film.titre_original}}","{{film.titre_francais}}","{{film.pays}}","{{film.date}}","{{film.duree}}","{{film.couleur}}")'>M</a><a href="index.php?action=delete_film&eid={{ film.code_film }}">X</a> </td>
@@ -94,19 +94,21 @@
 
 
 {% block information %}
-      <img id="imageFilm" href="" alt="blabla" width="150" height="200">
+      <img id="imageFilm" href="" width="150" height="200">
       <div id="infoFilm">
         <h2 class="flex100" id="TO">titre_original</h2>
-        <p> Titre français : </p>
-        <p class="flex80" id="TF">titre_francais</p>
-        <p> Pays : </p>
-        <p class="flex80" id="Pays">pays</p>
-        <p> Année : </p>
-        <p class="flex80" id="Date">date</p>
-        <p> Durée : </p>
-        <p class="flex80" id="Duree">duree</p>
-        <p> NB/couleur : </p>
-        <p class="flex80" id="Couleur">couleur</p>
+        <dl>
+          <dt class="flex20"> Titre français : </dt>
+          <dd class="flex80" id="TF">titre_francais</dd>
+          <dt class="flex20"> Pays : </dt>
+          <dd class="flex80" id="Pays">pays</dd>
+          <dt class="flex20"> Année : </dt>
+          <dd class="flex80" id="Date">date</dd>
+          <dt class="flex20"> Durée : </dt>
+          <dd class="flex80" id="Duree">duree</dd>
+          <dt class="flex20"> NB/couleur : </dt>
+          <dd class="flex80" id="Couleur">couleur</dd>
+      </dl>
       </div>
 {% endblock %}
 
@@ -139,7 +141,7 @@ function modification(code,to,tf,pays,date,duree,couleur){
 }
 
 <!--  Fais apparaitre les infos du film dans un tableau-->
-function info(to,tf,pays,date,duree,couleur)
+function info(to,tf,pays,date,duree,couleur,image)
 {
   sectionInfo.style.display="flex";
   console.log(to);
@@ -155,6 +157,8 @@ function info(to,tf,pays,date,duree,couleur)
   document.getElementById('Date').innerHTML = date;
   document.getElementById('Duree').innerHTML = duree;
   document.getElementById('Couleur').innerHTML = couleur;
+  document.getElementById('imageFilm').alt = image;
+
 }
 
 <!-- fonction permet de cacher les films + faire disparaitre choisir une lettre de la liste deroulante -->
