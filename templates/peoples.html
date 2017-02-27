@@ -77,8 +77,8 @@
     {% for people in peoples %}
 
     <tr id="{{people.code_indiv}}">
-        <td>{{people.nom}}</td>
-        <td>{{people.prenom}}</td>
+        <td class="alignerGauche">{{people.nom}}</td>
+        <td class="alignerGauche">{{people.prenom}}</td>
         <td>{{people.nationalite}}</td>
         <td>{{people.date_naiss}}</td>
         <td>{{people.date_mort}}</td>
@@ -95,18 +95,18 @@
 
 <!-- cachez Tableau informations film/Formulaire ajout /Formulaire Modifier -->
 var sectionInfo = document.getElementById('info');
-sectionInfo.style.visibility="collapse";
+sectionInfo.style.display="none";
 var formulaireAjoutModif = document.getElementById('formulaireAjoutModif');
-formulaireAjoutModif.style.visibility="collapse";
+formulaireAjoutModif.style.display="none";
 
 <!--  Fonction qui fait apparaitre le formulaire ajouter film-->
 function ajouter(){
-  formulaireAjoutModif.style.visibility="visible";
+  formulaireAjoutModif.style.display="block";
 }
 
 <!--  Fonction qui fait apparaitre le formulaire modification individu-->
 function modification(code,Nom,Prenom,natio,naiss,mort){
-  formulaireAjoutModif.style.visibility="visible";
+  formulaireAjoutModif.style.display="block";
 
   document.getElementById('action').value = "update_people";
   document.getElementById('code_indiv').value = code;

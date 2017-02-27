@@ -46,10 +46,15 @@ header{
 }
 #info{
   margin-top: 100px;
+  display : flex;
+  flex-wrap: wrap;
+  border:black 1px solid;
+  border-radius: 10px;
 }
 footer{
   flex:2 2 100%;
 }
+
 
 html {
   font-family: sans-serif;

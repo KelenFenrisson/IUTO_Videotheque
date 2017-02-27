@@ -55,7 +55,7 @@
     </tr>
     {% for genre in genres %}
     <tr id="{{genre.code_genre}}">
-        <td><a href='#' onclick='info("{{ genre.code_genre }}","{{ genre.nom_genre }}")'>{{genre.nom_genre}}</a></td>
+        <td class="alignerGauche"><a href='#' onclick='info("{{ genre.code_genre }}","{{ genre.nom_genre }}")'>{{genre.nom_genre}}</a></td>
         <td><a href="index.php?action=film_by_genre&eid={{ genre.code_genre }}">¤</a></td>
         <td><a href="index.php?action=director_by_genre&eid={{ genre.code_genre }}">*</a></td>
         <td><a href="index.php?action=actor_by_genre&eid={{ genre.code_genre }}">$</a></td>
