@@ -17,102 +17,102 @@ define('BASE',"nom de la base de données");
 
 ## Structure
 
-### /doc
-#### Documentation.md
+#### /doc
+##### Documentation.md(vide)
 
-### /models
+#### /models
 Fichiers en relation avec la base de données
-#### /backups
+##### /backups
 quelques backups residuels du projet
-#### acteurs.sql
+##### acteurs.sql
 Script de création et population de la table acteurs
-#### classification.sql
+##### classification.sql
 Script de création et population de la table classification
-#### films.sql
+##### films.sql
 Script de création et population de la table films
-#### genres.sql
+##### genres.sql
 Script de création et population de la table genres
-#### individus.sql
+##### individus.sql
 Script de création et population de la table individus
-#### realisateurs.sql
+##### realisateurs.sql
 Script de création et population de la table realisateurs
-#### recherche.php
+##### recherche.php
 fichier php contenant le script de connection a la base de données et 
 une classe recherche qui gère des requetes pré-établies.
-#### _votre connect.php_
+##### _votre connect.php_
 Ce fichier doit contenir le code necessaire à la connection à la BDD 
 
-### /static
-#### static.md
+#### /static
+##### static.md
 Un fichier residuel d'iformation obtenues pendant le cours
-#### knacss.css
+##### knacss.css
 Un fichier css qui n'est pas utilisé 
-#### styles.css
+##### styles.css
 Le fichier css utilisé par le projet
 
-### /templates
-#### /img
+#### /templates
+##### /img
 Contient les images utilisées par le projet
-#### accueil.html
+##### accueil.html
 page d'accueil
-#### acteurs.html
+##### acteurs.html
 page contenant l'affichage de la liste des acteurs
-#### BaseTemplate.html
+##### BaseTemplate.html
 template de base
-#### error.html
+##### error.html
 page d'erreur (404 et autres)
-#### films.html
+##### films.html
 page contenant l'affichage de la liste des films
-#### genres.html
+##### genres.html
 page contenant l'affichage de la liste des genres
-#### peoples.html
+##### peoples.html
 page contenant l'affichage de la liste des peoples
-#### realisateurs.html
+##### realisateurs.html
 page contenant l'affichage de la liste des realisateurs
 
-### /vendor
+#### /vendor
 fichier exploité par twig et composer
 royaume magique du templating. 
 Nous nous dégageons de toute responsabilité si vous touchez a ces fichiers
 
-### composer.json
+#### composer.json
 fichier exploité par twig et composer
 royaume magique du templating. 
 Nous nous dégageons de toute responsabilité si vous touchez a ce fichiers
 
-### composer.lock
+#### composer.lock
 fichier exploité par twig et composer
 royaume magique du templating. 
 Nous nous dégageons de toute responsabilité si vous touchez a ce fichiers
 
-### README.md
+#### README.md
 Ce fichier.
 
-### accueil.php
+#### accueil.php
 fichier alimentant accueil.html
-### acteurs.php
+#### acteurs.php
 fichier alimentant acteurs.html
-### controllers.php
+#### controllers.php
 fichier faisant le lien entre index.php et recherche.php
 regroupe les fonctions de jonction entre requete et template
  
-### error404.php
+#### error404.php
 fichier alimentant error.html
-### films.php
+#### films.php
 fichier alimentant films.html
-### genres.php
+#### genres.php
 fichier alimentant genres.html
-### index.php
+#### index.php
 aiguilleur du projet, s'occupe de l'orientation de l'utilisateur et du filtrage
 des informations qu'il saisit.
 
-### peoples.php
+#### peoples.php
 fichier alimentant peoples.html
-### realisateurs.php
+#### realisateurs.php
 fichier alimentant realisateurs.html
 
-## Sources
 
+## Sources
 Les cours de l'IUT d'orleans sur le modèle MVC.
 
 https://getcomposer.org/
