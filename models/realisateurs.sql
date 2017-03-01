@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS `realisateurs` (
 --
 -- Contenu de la table `realisateurs`
 --
-INSERT INTO realisateurs VALUES
+INSERT INTO `realisateurs` (`code_film`, `code_indiv`) VALUES
   (1, 7),
   (395, 7),
   (2, 8),

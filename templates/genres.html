@@ -12,11 +12,11 @@
 {% block FormulaireAjoutModif %}
 <fieldset id="ajout_modif_genre">
 <form action="index.php" method="GET"  name="formu_inserer">
-<input type="hidden" id="action" name="action" value="add_genre">
-<input type="hidden" id="code_genre" name="code_genre">
+<input type="hidden" id="action" name="action" value="add_genre"/>
+<input type="hidden" id="code_genre" name="code_genre"/>
 <label  for="nom_genre"> Genre :</label>
 <input type="text" name="nom_genre"  id="nom_genre" size="20" title="Entre ici le genre" placeholder="Genre" required  />
-<input type="submit" id="boutonModif" value="Ajouter un genre">
+<input type="submit" id="boutonModif" value="Ajouter un genre"/>
 </form>
 </fieldset>
 {% endblock %}
@@ -46,7 +46,7 @@
 
 
 <table>
-    <tr>
+    <tr class="gras">
         <td>Genre </td>
         <td>Films</td>
         <td>Réalisateurs</td>
@@ -55,11 +55,11 @@
     </tr>
     {% for genre in genres %}
     <tr id="{{genre.code_genre}}">
-        <td><a href='#' onclick='info("{{ genre.code_genre }}","{{ genre.nom_genre }}")'>{{genre.nom_genre}}</a></td>
-        <td><a href="index.php?action=film_by_genre&id={{ genre.code_genre }}">¤</a></td>
-        <td><a href="index.php?action=director_by_genre&id={{ genre.code_genre }}">*</a></td>
-        <td><a href="index.php?action=actor_by_genre&id={{ genre.code_genre }}">$</a></td>
-        <td><a href="#" onclick='modification("{{ genre.code_genre }}","{{ genre.nom_genre }}")'>M</a> <a href="index.php?action=delete_genre&id={{ genre.code_genre }}">X</a> </td>
+        <td class="alignerGauche"><a href='#' onclick='info("{{ genre.code_genre }}","{{ genre.nom_genre }}")'>{{genre.nom_genre}}</a></td>
+        <td><a href="index.php?action=film_by_genre&eid={{ genre.code_genre }}">¤</a></td>
+        <td><a href="index.php?action=director_by_genre&eid={{ genre.code_genre }}">*</a></td>
+        <td><a href="index.php?action=actor_by_genre&eid={{ genre.code_genre }}">$</a></td>
+        <td><a href="#" onclick='modification("{{ genre.code_genre }}","{{ genre.nom_genre }}")'>M</a> <a href="index.php?action=delete_genre&eid={{ genre.code_genre }}">X</a> </td>
     </tr>
     {% endfor %}
 </table>

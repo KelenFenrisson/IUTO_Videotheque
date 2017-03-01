@@ -4,33 +4,148 @@
 {{parent()}}
 {% endblock %}
 
+
+{%block titleBody %}
+{{titre}}
+{% endblock %}
+
+{%block FormulaireAjoutModif %}
+<fieldset id="ajout_modif_individu">
+<form action="index.php" method="GET"  name="formu_inserer">
+<input type="hidden" id="action" name="action" value="add_people">
+<input type="hidden" id="code_indiv" name="code_indiv">
+<label  for="nom">Nom :</label>
+<input type="text" name="nom"  id="nom" size="20" title="Entre ici le nom" placeholder="Nom" required  />
+<label  for="prenom">Prénom:</label>
+<input type="text" name="prenom"  id="prenom" size="20" title="Entre ici le prénom" placeholder="Prénom" required  />
+<label  for="nationalite">Nationalité:</label>
+<input type="text" name="nationalite"  id="nationalite" size="15" title="Entre ici le pays" placeholder="Nationalite" required  />
+<label  for="date_naiss">Date de naissance:</label>
+<input type="text" name="date_naiss"  id="date_naiss" size="4" title="Entre ici la date de naissance " placeholder="Date" required  />
+<label  for="date_mort">Date de décès:</label>
+<input type="text" name="date_mort"  id="date_mort" size="4" title="Entre ici la date de décès" placeholder="Date" required  />
+<input type="submit" id="boutonModif" value="Ajouter un individu">
+</form>
+</fieldset>
+{% endblock %}
+
 {% block content %}
 
-<h2>{{titre}}</h2>
+<div>
+    <label for=lettre_Individus>Individus :</label>
+    <select name="lettre_Individus" id="lettre_Individus" size="1" onchange="changeIndividus(this)">
+        <option id="cachezClick_lettre" selected="selected">Choisis une lettre</option>
+        <option>A</option>
+        <option>B</option>
+        <option>C</option>
+        <option>D</option>
+        <option>E</option>
+        <option>F</option>
+        <option>G</option>
+        <option>H</option>
+        <option>I</option>
+        <option>J</option>
+        <option>K</option>
+        <option>L</option>
+        <option>M</option>
+        <option>N</option>
+        <option>O</option>
+        <option>P</option>
+        <option>Q</option>
+        <option>R</option>
+        <option>S</option>
+        <option>T</option>
+        <option>U</option>
+        <option>V</option>
+        <option>W</option>
+        <option>X</option>
+        <option>Y</option>
+        <option>Z</option>
+    </select>
+</div>
+
 <table>
-    <tr>
+    <tr class="gras">
         <td>Nom </td>
         <td>Prénom </td>
-
         <td>Nationalité</td>
         <td>Date de naissance</td>
         <td>Date de décès</td>
-        <td><a href="index.php?action=add_people">+</a></td>
+        <td><a href="#" onclick="ajouter()">+</a></td>
     </tr>
     {% for people in peoples %}
 
-    <tr>
-        <td>{{people.nom}}</td>
-        <td>{{people.prenom}}</td>
+    <tr id="{{people.code_indiv}}">
+        <td class="alignerGauche">{{people.nom}}</td>
+        <td class="alignerGauche">{{people.prenom}}</td>
         <td>{{people.nationalite}}</td>
         <td>{{people.date_naiss}}</td>
         <td>{{people.date_mort}}</td>
-        <td><a href="index.php?action=edit_people&id={{ people.code_indiv }}">M</a><a href="index.php?action=delete_people&id={{ people.code_indiv }}">X</a> </td>
+        <td><a href="#" onclick='modification("{{people.code_indiv}}","{{people.nom}}","{{people.prenom}}","{{people.nationalite}}","{{people.date_naiss}}","{{people.date_mort}}")'>M</a><a href="index.php?action=delete_people&eid={{ people.code_indiv }}">X</a> </td>
     </tr>
 
     {% endfor %}
 
-
 </table>
+
+{% endblock %}
+
+{% block javascript%}
+
+<!-- cachez Tableau informations film/Formulaire ajout /Formulaire Modifier -->
+var sectionInfo = document.getElementById('info');
+sectionInfo.style.display="none";
+var formulaireAjoutModif = document.getElementById('formulaireAjoutModif');
+formulaireAjoutModif.style.display="none";
+
+<!--  Fonction qui fait apparaitre le formulaire ajouter film-->
+function ajouter(){
+  formulaireAjoutModif.style.display="block";
+}
+
+<!--  Fonction qui fait apparaitre le formulaire modification individu-->
+function modification(code,Nom,Prenom,natio,naiss,mort){
+  formulaireAjoutModif.style.display="block";
+
+  document.getElementById('action').value = "update_people";
+  document.getElementById('code_indiv').value = code;
+  document.getElementById('nom').value = Nom;
+  document.getElementById('prenom').value = Prenom;
+  document.getElementById('nationalite').value = natio;
+  document.getElementById('date_naiss').value = naiss;
+  document.getElementById('date_mort').value = mort;
+  document.getElementById('boutonModif').value = "Modifier l'individu";
+}
+
+<!-- fonction permet de cacher les films + faire disparaitre choisir une lettre de la liste deroulante -->
+function changeIndividus(name)
+{
+  console.log(name.value);
+  cacher_film(name.value);
+  document.getElementById('cachezClick_lettre').style.display = 'none';
+}
+
+<!--  permet de modifier le pattern pour afficher/cacher les films-->
+function cacher_film(name)
+{
+  var chaineCarac="^["+name+"]";
+  console.log(chaineCarac);
+  regIndiv = new RegExp(chaineCarac);
+
+  {% for people in peoples%}
+
+  var codeIndiv = document.getElementById('{{people.code_indiv}}');
+
+  if (!regIndiv.test('{{people.nom}}'))
+  {
+    codeIndiv.style.visibility="collapse";
+  }
+  else
+  {
+    codeIndiv.style.visibility="visible";
+  }
+  {% endfor %}
+}
+
 
 {% endblock %}

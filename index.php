@@ -157,7 +157,7 @@ switch ($action) {
         break;
 
     case "add_actor":
-        add_actor_action($filtered, $filtered['film_id']);
+        add_actor_action($filtered, $filtered['code_film']);
         break;
 
     case "add_genre":
@@ -165,7 +165,7 @@ switch ($action) {
         break;
 
     case "add_director":
-        add_director_action($filtered, $filtered['film_id']);
+        add_director_action($filtered, $filtered['code_film']);
         break;
 
 /////////////////////////////////////////////////   MODIFICATION   /////////////////////////////////////////////////////
@@ -179,11 +179,11 @@ switch ($action) {
         break;
 
     case "update_actor":
-        update_actor_action($filtered, $filtered['film_id']);
+        update_actor_action($filtered, $filtered['code_film']);
         break;
 
     case "update_director":
-        update_director_action($filtered, $filtered['film_id']);
+        update_director_action($filtered, $filtered['code_film']);
         break;
 
     case "update_genre":
@@ -201,7 +201,7 @@ switch ($action) {
         break;
 
     case "delete_actor":
-        delete_actor_action($filtered['eid'], $filtered['film_id']);
+        delete_actor_action($filtered['code_indiv'], $filtered['code_film']);
         break;
 
     case "delete_genre":
@@ -209,7 +209,7 @@ switch ($action) {
         break;
 
     case "delete_director":
-        delete_director_action($filtered, $filtered['film_id']);
+        delete_director_action($filtered['code_indiv'], $filtered['code_film']);
         break;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

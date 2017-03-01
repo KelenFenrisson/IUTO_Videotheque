@@ -2,7 +2,7 @@
 
 include 'vendor/autoload.php';
 
-
+$msg = $msg ?? "";
 try {
     //indiquer le dossier ou on trouve les templates
     $loader = new Twig_Loader_Filesystem('templates');

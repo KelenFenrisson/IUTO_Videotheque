@@ -16,10 +16,11 @@ function connect_bd(){
 
 class Recherche{
 
-    static $connexion;
+
+    static $connexion ;
 
     function __construct(){
-        $this->connexion = connect_bd();
+        self::$connexion = connect_bd();
     }
 
 
@@ -52,7 +53,7 @@ class Recherche{
 
     function get_all_individus(){
         $sql = "SELECT * from individus ORDER BY nom,prenom";
-        $stmt = $this->connexion->prepare($sql);
+        $stmt = self::$connexion->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -60,7 +61,7 @@ class Recherche{
     // recherche tous les films
     function get_all_films(){
         $sql = "SELECT * from films ORDER BY titre_original";
-        $stmt = $this->connexion->prepare($sql);
+        $stmt = self::$connexion->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -71,7 +72,7 @@ class Recherche{
                 FROM films NATURAL JOIN  acteurs
                 WHERE code_indiv = ?
                 ORDER BY titre_original, titre_francais";
-        $stmt = $this->connexion->prepare($sql);
+        $stmt = self::$connexion->prepare($sql);
         $stmt->execute(array($acteur));
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -82,7 +83,7 @@ class Recherche{
 				FROM films NATURAL JOIN realisateurs
 				WHERE code_indiv=?
 				ORDER BY titre_original,titre_francais";
-        $stmt = $this->connexion->prepare($sql);
+        $stmt = self::$connexion->prepare($sql);
         $stmt->execute(array($realisateur));
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -93,7 +94,7 @@ class Recherche{
                 FROM films NATURAL JOIN  classification
                 WHERE code_genre= ?
                 ORDER BY titre_original,titre_francais";
-        $stmt = $this->connexion->prepare($sql);
+        $stmt = self::$connexion->prepare($sql);
         $stmt->execute(array($genre));
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -105,7 +106,7 @@ class Recherche{
         $sql = "SELECT DISTINCT code_indiv,nom,prenom,nationalite,date_naiss,date_mort
 				FROM films NATURAL JOIN individus NATURAL JOIN acteurs
 				ORDER BY nom, prenom";
-        $stmt = $this->connexion->prepare($sql);
+        $stmt = self::$connexion->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -115,7 +116,7 @@ class Recherche{
 						FROM films NATURAL JOIN  acteurs NATURAL JOIN  individus
 						WHERE code_film = ?
 						ORDER BY nom, prenom";
-        $stmt = $this->connexion->prepare($sql);
+        $stmt = self::$connexion->prepare($sql);
         $stmt->execute(array($film));
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -127,7 +128,7 @@ class Recherche{
 						NATURAL JOIN classification
 						WHERE code_genre = ?
 						ORDER BY nom, prenom";
-        $stmt = $this->connexion->prepare($sql);
+        $stmt = self::$connexion->prepare($sql);
         $stmt->execute(array($genre));
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -138,7 +139,7 @@ class Recherche{
 				FROM films NATURAL JOIN individus NATURAL JOIN acteurs
 				WHERE code_film IN (SELECT code_film FROM films NATURAL JOIN realisateurs WHERE code_indiv=?)
 				ORDER BY nom, prenom";
-        $stmt = $this->connexion->prepare($sql);
+        $stmt = self::$connexion->prepare($sql);
         $stmt->execute(array($realisateur));
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -151,7 +152,7 @@ class Recherche{
         $sql = "SELECT DISTINCT code_indiv,nom,prenom,nationalite,date_naiss,date_mort
 				FROM films NATURAL JOIN individus NATURAL JOIN realisateurs
 				ORDER BY nom, prenom";
-        $stmt = $this->connexion->prepare($sql);
+        $stmt = self::$connexion->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -162,7 +163,7 @@ class Recherche{
 				FROM films NATURAL JOIN individus NATURAL JOIN realisateurs
 				WHERE code_film=?
 				ORDER BY nom, prenom";
-        $stmt = $this->connexion->prepare($sql);
+        $stmt = self::$connexion->prepare($sql);
         $stmt->execute(array($film_id));
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -173,7 +174,7 @@ class Recherche{
 				FROM films NATURAL JOIN individus NATURAL JOIN realisateurs
 				WHERE code_film IN (SELECT code_film FROM films NATURAL JOIN acteurs WHERE code_indiv=?)
 				ORDER BY nom, prenom";
-        $stmt = $this->connexion->prepare($sql);
+        $stmt = self::$connexion->prepare($sql);
         $stmt->execute(array($acteur_id));
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -184,7 +185,7 @@ class Recherche{
 				FROM films NATURAL JOIN individus NATURAL JOIN realisateurs NATURAL JOIN genres
 				WHERE code_film IN (SELECT code_film FROM classification WHERE code_genre=?)
 				ORDER BY nom, prenom";
-        $stmt = $this->connexion->prepare($sql);
+        $stmt = self::$connexion->prepare($sql);
         $stmt->execute(array($genre_id));
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -194,7 +195,7 @@ class Recherche{
 // recherche tous les genres et les trie par nom
     function get_all_genres(){
         $sql = "SELECT * from genres ORDER BY nom_genre";
-        $stmt = $this->connexion->prepare($sql);
+        $stmt = self::$connexion->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -206,7 +207,7 @@ class Recherche{
 		FROM films NATURAL JOIN  classification NATURAL JOIN  genres
 		WHERE code_film = ?
 		ORDER BY nom_genre";
-        $stmt = $this->connexion->prepare($sql);
+        $stmt = self::$connexion->prepare($sql);
         $stmt->execute(array($film_id));
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -218,7 +219,7 @@ class Recherche{
 		NATURAL JOIN classification NATURAL JOIN  genres
 		WHERE code_indiv = ?
 		ORDER BY nom_genre";
-        $stmt = $this->connexion->prepare($sql);
+        $stmt = self::$connexion->prepare($sql);
         $stmt->execute(array($acteur_id));
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -230,7 +231,7 @@ class Recherche{
 		NATURAL JOIN classification NATURAL JOIN  genres
 		WHERE code_indiv = ?
 		ORDER BY nom_genre";
-        $stmt = $this->connexion->prepare($sql);
+        $stmt = self::$connexion->prepare($sql);
         $stmt->execute(array($realisateur_id));
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -240,39 +241,37 @@ class Recherche{
 //ajout d'un film
     function ajout_film($film){
         $sql = " INSERT INTO films(titre_original,titre_francais,pays,date,duree,couleur,image) VALUES (?,?,?,?,?,?,?)";
-        $stmt = $this->connexion->prepare($sql);
+        $stmt = self::$connexion->prepare($sql);
         return $stmt->execute(array($film['titre_original'],$film['titre_francais'],$film['pays'],$film['date'],$film['duree'],$film['couleur'],$film['image']));
     }
 
 //ajout d'un individu
     function ajout_individu($individu){
-        $sql = " INSERT INTO individus(code_indiv,nom,prenom,nationalite,date_naiss,date_mort) VALUES (?,?,?,?,?,?)";
-        $stmt = $this->connexion->prepare($sql);
-        return $stmt->execute(array($individu['code_indiv'],$individu['nom'],$individu['prenom'],$individu['nationalite'],$individu['date_naiss'],$individu['date_mort']));
+        $sql = " INSERT INTO individus(nom,prenom,nationalite,date_naiss,date_mort) VALUES (?,?,?,?,?)";
+        $stmt = self::$connexion->prepare($sql);
+        return $stmt->execute(array($individu['nom'],$individu['prenom'],$individu['nationalite'],$individu['date_naiss'],$individu['date_mort']));
     }
 
 //ajout d'un acteur
     function ajout_acteur($individu, $film_id){
-        $req1=$this->ajout_individu($individu); // valeur booleenne
-        $sql = " INSERT INTO acteurs VALUES (?,?);";
-        $stmt = $this->connexion->prepare($sql);
-        $req2=$stmt->execute(array($individu['code_indiv'], $film_id));// valeur booleenne
-        return ($req1 and $req2);
+        $sql = " INSERT INTO acteurs VALUES (?,?)";
+        $stmt = self::$connexion->prepare($sql);
+        $req = $stmt->execute(array($film_id,$individu['code_indiv']));// valeur booleenne
+        return $req;
     }
 
 //ajout d'un realisateur
     function ajout_realisateur($individu, $film_id){
-        $req1=$this->ajout_individu($individu); // valeur booleenne
-        $sql = " INSERT INTO realisateurs VALUES (?,?);";
-        $stmt = $this->connexion->prepare($sql);
-        $req2=$stmt->execute(array($individu['code_indiv'], $film_id));// valeur booleenne
-        return ($req1 and $req2);
+        $sql = " INSERT INTO realisateurs VALUES (?,?)";
+        $stmt = self::$connexion->prepare($sql);
+        $req = $stmt->execute(array($film_id,$individu['code_indiv']));// valeur booleenne
+        return $req;
     }
 
 //ajout d'un genre
     function ajout_genre($genre){
         $sql = " INSERT INTO genres(nom_genre) VALUES (?)";
-        $stmt = $this->connexion->prepare($sql);
+        $stmt = self::$connexion->prepare($sql);
         return $stmt->execute(array($genre['nom_genre']));
     }
 
@@ -280,56 +279,56 @@ class Recherche{
 //supression d'un film
     function suppr_film($film){
         $sql="DELETE FROM films WHERE code_film=?";
-        $stmt=$this->connexion->prepare($sql);
+        $stmt=self::$connexion->prepare($sql);
         return $stmt->execute(array($film)) ;
     }
 
 //supression d'un individu
     function suppr_individu($individu_id){
         $sql="DELETE FROM individus WHERE code_indiv=?";
-        $stmt=$this->connexion->prepare($sql);
+        $stmt=self::$connexion->prepare($sql);
         return $stmt->execute(array($individu_id));
     }
 
 //supression d'un acteur
     function suppr_acteur($individu_id, $film_id){
         $sql="DELETE FROM acteurs WHERE code_indiv=? and code_film=?";
-        $stmt=$this->connexion->prepare($sql);
+        $stmt=self::$connexion->prepare($sql);
         return $stmt->execute(array($individu_id, $film_id));
     }
 
 //supression d'un realisateur
     function suppr_realisateur($individu_id, $film_id){
         $sql="DELETE FROM realisateurs WHERE code_indiv=? and code_film=?";
-        $stmt=$this->connexion->prepare($sql);
+        $stmt=self::$connexion->prepare($sql);
         return $stmt->execute(array($individu_id, $film_id));
     }
 
 //supression d'un genre
     function suppr_genre($genre){
         $sql="DELETE FROM genres WHERE code_genre=?";
-        $stmt=$this->connexion->prepare($sql);
+        $stmt=self::$connexion->prepare($sql);
         return $stmt->execute(array($genre));
     }
 
 //modification d'un film (avec $film toutes les valeurs)
     function modif_film($film){
         $sql = "UPDATE films SET titre_original=?,titre_francais=?,pays=?,date=?,duree=?,couleur=?,image=? where code_film=?";
-        $stmt=$this->connexion->prepare($sql);
+        $stmt=self::$connexion->prepare($sql);
         return $stmt->execute(array($film['titre_original'],$film['titre_francais'],$film['pays'],$film['date'],$film['duree'],$film['couleur'],$film['image'],$film['code_film'],));
     }
 
 //modification d'un individu (avec $individu toutes les valeurs)
     function modif_individu($individu){
         $sql = "UPDATE individus SET nom=?,prenom=?,nationalite=?,date_naiss=?,date_mort=? where code_indiv=?";
-        $stmt=$this->connexion->prepare($sql);
-        return $stmt->execute(array($individu['nom'],$individu['prenom'],$individu['nationalite'],$individu['date_naiss'],$individu['date_mort']));
+        $stmt=self::$connexion->prepare($sql);
+        return $stmt->execute(array($individu['nom'],$individu['prenom'],$individu['nationalite'],$individu['date_naiss'],$individu['date_mort'],$individu['code_indiv']));
     }
 
 //modification d'un genre (avec $genre toutes les valeurs)
     function modif_genre($genre){
         $sql = "UPDATE genres SET nom_genre=? where code_genre=?";
-        $stmt=$this->connexion->prepare($sql);
+        $stmt=self::$connexion->prepare($sql);
         return $stmt->execute(array($genre['nom_genre'],$genre['code_genre']));
     }
 

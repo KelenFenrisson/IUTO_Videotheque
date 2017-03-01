@@ -9,6 +9,40 @@
 {{titre}}
 {% endblock %}
 
+{%block FormulaireAjoutModif %}
+<fieldset >
+<form action="index.php" method="GET"  name="formu_inserer">
+<input type="hidden" id="action" name="action" value="add_actor">
+<input type="hidden" id="code_indiv" name="code_indiv">
+
+<div id="ajouter_real_dans_film">
+  <input type="text" disabled id="nomIndiv" name="nomIndiv">
+  <select name="code_film" id="code_film" size="1" required>
+   {% for film in films%}
+   <option value="{{film.code_film}}">{{film.titre_original}}</option>
+   {% endfor %}
+  </select>
+</div>
+
+<div id="modif_Real">
+  <label  for="nom">Nom :</label>
+  <input type="text" name="nom"  id="nom" size="20" title="Entre ici le nom" placeholder="Nom"  required />
+  <label  for="prenom">Prénom:</label>
+  <input type="text" name="prenom"  id="prenom" size="20" title="Entre ici le prénom" placeholder="Prénom"  required />
+  <label  for="nationalite">Nationalité:</label>
+  <input type="text" name="nationalite"  id="nationalite" size="15" title="Entre ici le pays" placeholder="Nationalite"  required />
+  <label  for="date_naiss">Date de naissance:</label>
+  <input type="text" name="date_naiss"  id="date_naiss" size="4" title="Entre ici la date de naissance " placeholder="Date"  required />
+  <label  for="date_mort">Date de décès:</label>
+  <input type="text" name="date_mort"  id="date_mort" size="4" title="Entre ici la date de décès" placeholder="Date" required  />
+</div>
+
+<input type="submit" id="boutonModif" value="ajouter un real à un film">
+</form>
+</fieldset>
+
+{% endblock %}
+
 {% block content %}
 
 <div>
@@ -45,7 +79,7 @@
 </div>
 
 <table>
-    <tr>
+    <tr class="gras">
         <td>Nom </td>
         <td>Prénom </td>
         <td>Nationalité</td>
@@ -61,17 +95,17 @@
     {% for real in realisateurs %}
 
     <tr id="{{real.code_indiv}}">
-        <td>{{real.nom}}</td>
-        <td>{{real.prenom}}</td>
+        <td class="alignerGauche">{{real.nom}}</td>
+        <td class="alignerGauche">{{real.prenom}}</td>
         <td>{{real.nationalite}}</td>
         <td>{{real.date_naiss}}</td>
         <td>{{real.date_mort}}</td>
-        <td><a href="index.php?action=film_by_director&id={{real.code_indiv}}"> ¤</a></td>
-        <td><a href="index.php?action=actor_by_director&id={{real.code_indiv}}">*</a></td>
-        <td><a href="index.php?action=genre_by_director&id={{real.code_indiv}}">$</a></td>
-        <td>+</td>
-        <td>~</td>
-        <td>-</td>
+        <td><a href="index.php?action=film_by_director&eid={{real.code_indiv}}"> ¤</a></td>
+        <td><a href="index.php?action=actor_by_director&eid={{real.code_indiv}}">*</a></td>
+        <td><a href="index.php?action=genre_by_director&eid={{real.code_indiv}}">$</a></td>
+        <td><a href="#" onclick='ajouter("{{real.code_indiv}}","{{real.nom}}")'>+</a></td>
+        <td><a href="#"onclick='modification("{{real.code_indiv}}","{{real.nom}}","{{real.prenom}}","{{real.nationalite}}","{{real.date_naiss}}","{{real.date_mort}}")'>~</a></td>
+        <td><a href="#"onclick='supprimer("{{real.code_indiv}}","{{real.nom}}")'>~</a></td>
     </tr>
 
     {% endfor %}
@@ -82,6 +116,71 @@
 {% endblock %}
 
 {% block javascript%}
+
+<!-- cachez Formulaire ajout  -->
+var formulaireAjoutModif = document.getElementById('formulaireAjoutModif');
+formulaireAjoutModif.style.display="none";
+
+function ajouter(codeIndividus,nomIndividus){
+  formulaireAjoutModif.style.display="block";
+  var formu1 = document.getElementById('ajouter_real_dans_film');
+  var formu2 = document.getElementById('modif_Real');
+
+  formu1.style.display = "block";
+  formu2.style.display = "none";
+
+  document.getElementById('action').value = "add_director";
+  document.getElementById('code_indiv').value = codeIndividus;
+  document.getElementById('nomIndiv').value = nomIndividus;
+  document.getElementById('boutonModif').value = "Ajouter un acteur à un film";
+
+  document.getElementById('nom').value = " ";
+  document.getElementById('prenom').value = " ";
+  document.getElementById('nationalite').value = " ";
+  document.getElementById('date_naiss').value = " ";
+  document.getElementById('date_mort').value = " ";
+}
+
+<!--  Fonction qui fait apparaitre le formulaire supprimer un acteur dans un film-->
+function supprimer(codeIndividus,nomIndividus){
+  formulaireAjoutModif.style.display="block";
+  var formu1 = document.getElementById('ajouter_real_dans_film');
+  var formu2 = document.getElementById('modif_Real');
+
+  formu1.style.display = "block";
+  formu2.style.display = "none";
+
+  document.getElementById('action').value = "delete_director";
+  document.getElementById('code_indiv').value = codeIndividus;
+  document.getElementById('nomIndiv').value = nomIndividus;
+  document.getElementById('boutonModif').value = "Supprimer un acteur à un film";
+
+  document.getElementById('nom').value = " ";
+  document.getElementById('prenom').value = " ";
+  document.getElementById('nationalite').value = " ";
+  document.getElementById('date_naiss').value = " ";
+  document.getElementById('date_mort').value = " ";
+}
+
+<!--  Fonction qui fait apparaitre le formulaire modification acteur-->
+function modification(code,Nom,Prenom,natio,naiss,mort){
+  formulaireAjoutModif.style.display="block";
+  var formu1 = document.getElementById('ajouter_real_dans_film');
+  var formu2 = document.getElementById('modif_Real');
+
+  formu1.style.display = "none";
+  formu2.style.display = "block";
+
+
+  document.getElementById('action').value = "update_people";  document.getElementById('code_indiv').value = code;
+  document.getElementById('nom').value = Nom;
+  document.getElementById('prenom').value = Prenom;
+  document.getElementById('nationalite').value = natio;
+  document.getElementById('date_naiss').value = naiss;
+  document.getElementById('date_mort').value = mort;
+  document.getElementById('boutonModif').value = "Modifier l'individu";
+
+}
 
 <!-- fonction permet de cacher les films + faire disparaitre choisir une lettre de la liste deroulante -->
 function changereal(name)

@@ -153,6 +153,7 @@ function actor_list_action($msg="")
 {
     $recherche = new Recherche();
     $acteurs = $recherche->get_all_acteurs();
+    $films = $recherche->get_all_films();
     require('acteurs.php');
 }
 
@@ -161,6 +162,7 @@ function actor_by_film_action($film_id)
 {
     $recherche = new Recherche();
     $acteurs = $recherche->acteurs_par_film($film_id);
+    $films = $recherche->get_all_films();
     require('acteurs.php');
 }
 
@@ -169,6 +171,7 @@ function actor_by_genre_action($genre_id)
 {
     $recherche = new Recherche();
     $acteurs = $recherche->acteurs_par_genre($genre_id);
+    $films = $recherche->get_all_films();
     require('acteurs.php');
 }
 
@@ -177,6 +180,7 @@ function actor_by_director_action($director_id)
 {
     $recherche = new Recherche();
     $acteurs = $recherche->acteurs_par_realisateurs($director_id);
+    $films = $recherche->get_all_films();
     require('acteurs.php');
 }
 
@@ -222,6 +226,7 @@ function director_list_action($msg="")
 {
     $recherche = new Recherche();
     $realisateurs = $recherche->get_all_realisateurs();
+    $films = $recherche->get_all_films();
     require('realisateurs.php');
 }
 
@@ -230,6 +235,7 @@ function director_by_film_action($film_id)
 {
     $recherche = new Recherche();
     $realisateurs = $recherche->realisateurs_par_film($film_id);
+    $films = $recherche->get_all_films();
     require('realisateurs.php');
 }
 
@@ -238,6 +244,7 @@ function director_by_actor_action($actor_id)
 {
     $recherche = new Recherche();
     $realisateurs = $recherche->realisateurs_par_acteur($actor_id);
+    $films = $recherche->get_all_films();
     require('realisateurs.php');
 }
 
@@ -246,6 +253,7 @@ function director_by_genre_action($genre_id)
 {
     $recherche = new Recherche();
     $realisateurs = $recherche->realisateurs_par_genre($genre_id);
+    $films = $recherche->get_all_films();
     require('realisateurs.php');
 }
 
