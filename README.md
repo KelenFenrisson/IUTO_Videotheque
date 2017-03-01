@@ -19,6 +19,8 @@ define('BASE',"nom de la base de données");
 
 #### /doc
 ##### Documentation.md(vide)
+##### Sources.md
+sources et inspirations du projet
 
 #### /models
 Fichiers en relation avec la base de données
@@ -112,8 +114,3 @@ fichier alimentant peoples.html
 fichier alimentant realisateurs.html
 
 
-## Sources
-Les cours de l'IUT d'orleans sur le modèle MVC.
-
-https://getcomposer.org/
-http://schnaps.it/ pour le css
